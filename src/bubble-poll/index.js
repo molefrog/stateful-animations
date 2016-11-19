@@ -40,16 +40,19 @@ class BubblePoll extends Component {
     context.save()
     context.translate(width / 2, height / 2)
 
-    context.beginPath()
+    this.props.poll.choices.forEach(choice => {
+      context.beginPath()
 
-    this.nodes.forEach(function (d) {
-      context.moveTo(d.x + d.r, d.y)
-      context.arc(d.x, d.y, d.r, 0, 2 * Math.PI)
+      this.nodes.forEach(function (d) {
+        if (d.choice === choice.id) {
+          context.moveTo(d.x + d.r, d.y)
+          context.arc(d.x, d.y, d.r, 0, 2 * Math.PI)
+        }
+      })
+
+      context.fillStyle = choice.color
+      context.fill()
     })
-
-    context.fill()
-    context.strokeStyle = 'black'
-    context.stroke()
 
     context.restore()
   }
@@ -60,8 +63,8 @@ class BubblePoll extends Component {
     const idx = this.choicesIds.indexOf(node.choice)
 
     return [
-      r * Math.cos(idx * 2 * Math.PI / 3),
-      r * Math.sin(idx * 2 * Math.PI / 3),
+      r * Math.cos(idx * 2 * Math.PI / this.choicesIds.length),
+      r * Math.sin(idx * 2 * Math.PI / this.choicesIds.length),
       0.015
     ]
   }
