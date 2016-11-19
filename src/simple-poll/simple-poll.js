@@ -13,6 +13,8 @@ class SimplePoll extends Component {
     const { poll } = this.props
 
     const bars = this.getChartData()
+    const maxWeight = Math.min(0.4, Math.max(...bars.map(b => b.weight)))
+
     const barWidth = `${100.0 / bars.length}%`
 
     return (
@@ -37,7 +39,7 @@ class SimplePoll extends Component {
                 <div className='simple-poll__bar-progress'
                   style={{
                     backgroundColor: bar.color,
-                    height: `${Math.max(1, 100 * bar.weight)}%`
+                    height: `${Math.max(1, 0.8 * 100 * safeFraction(bar.weight, maxWeight))}%`
                   }} />
               </div>)
             )}
@@ -68,19 +70,17 @@ class SimplePoll extends Component {
     const { poll } = this.props
     if (!poll) return []
 
-    const totalVoters = this.getVotersCount()
-
     return poll.choices.map(choice => {
-      let count = poll.results[choice.id]
+      let result = poll.results[choice.id]
 
       return {
         ...choice,
-        count,
         label: choice.text,
-        weight: safeFraction(count, totalVoters)
+        weight: result.percent
       }
     })
   }
 }
+
 
 export default SimplePoll

@@ -1,6 +1,7 @@
 .simple-poll {
   width: 1024px;
   height:  768px;
+  box-sizing: border-box;
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
@@ -75,15 +76,15 @@
 }
 
 .simple-poll__bar-progress {
-  border-radius: 10px;
+  border-radius: 5px;
   transition: height 0.3s ease;
 }
 
 .simple-poll__label {
   color: '#444';
-  font-size: 24px;
+  font-size: 18px;
   text-align: center;
-  padding: 10px;
+  padding: 5px;
   font-weight: bold;
 }
 
