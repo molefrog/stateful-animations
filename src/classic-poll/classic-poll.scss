@@ -1,6 +1,6 @@
 .classic-poll {
-  width: 1024px;
-  height: 768px;
+  width: 1080px;
+  height: 800px;
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
@@ -10,19 +10,33 @@
 }
 
 .classic-poll__question {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: bold;
-  padding-bottom: 40px;
+  padding-bottom: 8px;
+}
+
+.classic-poll__subheader {
+  font-size: 26px;
+  margin-bottom: 20px;
+  > span {
+    font-weight: bold;
+    text-decoration: underline;
+    margin-left: 8px;
+    padding: 2px 5px;
+    font-size: 28px;
+
+    background-color: #FDFD3D;
+  }
 }
 
 .classic-poll__result {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .classic-poll__result-header {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: bold;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .classic-poll__line {
@@ -37,23 +51,22 @@
 
   background-color: #eee;
   overflow: hidden;
-  height: 50px;
+  height: 40px;
 
   border-radius: 5px;
 }
 
 .classic-poll__progress {
-  height: 50px;
+  height: 40px;
   background-color: black;
-  width: 25%;
   transition: width 0.3s ease;
   border-radius: 5px;
 }
 
 .classic-poll__percent {
-  font-size: 46px;
+  font-size: 36px;
   font-weight: bold;
   padding-left: 25px;
-  width: 120px;
+  width: 80px;
   flex-shrink: 0;
 }
