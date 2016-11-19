@@ -3,7 +3,7 @@ import './playground.scss'
 
 import SimplePoll from 'simple-poll'
 // import CloudPoll from 'cloud-poll'
-// import BubblePoll from 'bubble-poll'
+import BubblePoll from 'bubble-poll'
 
 const makeUid = () => (Math.random() * 0xffffff | 0)
 
@@ -70,7 +70,7 @@ class Playground extends Component {
   constructor () {
     super()
     this.state = {
-      poll: addVotes(initialPoll, 40)
+      poll: addVotes(initialPoll, 80)
     }
   }
 
@@ -117,14 +117,17 @@ class Playground extends Component {
         </div>
 
         <div className='playground__content'>
-          {/*
-          <div className='playground__poll'>
-            <BubblePoll poll={this.state.poll} />
-          </div>
-          */}
 
           <div className='playground__poll'>
-            <SimplePoll poll={makePollPayload(this.state.poll)} />
+            <div className='playground__poll-wrap'>
+              <BubblePoll poll={this.state.poll} />
+            </div>
+          </div>
+
+          <div className='playground__poll'>
+            <div className='playground__poll-wrap'>
+              <SimplePoll poll={makePollPayload(this.state.poll)} />
+            </div>
           </div>
         </div>
       </div>

@@ -70,11 +70,18 @@ body {
 }
 
 .playground__poll {
-  transform: scale(0.4, 0.4);
-  transform-origin: left top;
-  border: 1px solid black;
+  width: 410px;
+  height: 306px;
+  overflow: hidden;
+  border: 1px solid #e1e1e1;
+  border-radius: 3px;
   margin: 20px;
   display: inline-block;
+}
+
+.playground__poll-wrap {
+  transform: scale(0.4, 0.4);
+  transform-origin: left top;
 }
 
 .fancy-block {
