@@ -14,12 +14,20 @@
   padding: 8px 11px;
   font-size: 18px;
 
+  user-select: none;
+
   &:hover {
     background-color: rgba($beauty-bush, 0.01);
   }
 
   &:active {
     background-color: rgba($beauty-bush, 0.1);
+  }
+}
+
+.button--checked {
+  &, &:active, &:hover {
+    background-color: rgba(#6EDDA4, 0.2);
   }
 }
 
