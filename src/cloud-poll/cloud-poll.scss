@@ -1,0 +1,165 @@
+
+.cloud-poll {
+  width: 1080px;
+  height: 800px;
+
+  box-sizing: border-box;
+  background-color: black;
+  color: white;
+  text-align: left;
+  position: relative;
+
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.cloud-poll__poll-question {
+  padding: 40px;
+  padding-bottom: 0;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cloud-poll__cloud-poll-layout {
+  flex-grow: 1;
+  flex-shrink: 1;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.cloud-poll__contenders {
+  height: 100%;
+  flex: 2 0;
+}
+
+.cloud-poll__summary {
+  flex: 1 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cloud-poll__balls-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.cloud-poll__ball {
+  position: absolute;
+  top: -9px;
+  left: -9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 18px;
+  opacity: 0;
+  background-color: white;
+}
+
+.cloud-poll__contenders {
+  position: relative;
+}
+
+// ---
+// Cloud poll entry
+// ---
+$lineFontSize: 20px;
+
+.cloud-poll__entry {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 1.222;
+}
+
+.cloud-poll__entry-name {
+  padding-left: 20px;;
+  box-sizing: border-box;
+  width: 350px;
+  font-size: $lineFontSize;
+  margin-right: 9px;
+  text-align: right;
+  flex-shrink: 0;
+  line-height: 20px;
+}
+
+.cloud-poll__entry-votes {
+  background-color: white;
+  height: 6px;
+  border-radius: 6px;
+  display: inline-block;
+  width: 23px;
+}
+
+.cloud-poll__entry-count {
+  z-index: 3;
+  display: inline-block;
+  margin-left: -9px;
+  font-size: $lineFontSize;
+  border-radius: 20px;
+  background-color: white;
+  color: black;
+  padding-right: 10px;
+  padding-left: 10px;
+  min-width: 10px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.cloud-poll__already-voted {
+  text-align: center;
+  max-width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// ---
+// Number of voters and animation
+// ---
+@keyframes cloud-poll__flash-anim {
+  30% {
+    transform: scale(1.5, 1.5);
+  }
+
+  100% {
+    transform: scale(1.0, 1.0);
+  }
+}
+
+.cloud-poll__flash-animation {
+  animation: cloud-poll__flash-anim 0.3s;
+  animation-timing-function: ease;
+}
+
+
+.cloud-poll__number {
+  font-size: 80px;
+  font-weight: 900;
+}
+
+.cloud-poll__label {
+  font-size: 24px;
+  line-height: 1.222;
+}
+
+.cloud-poll__label-link {
+  font-size: 24px;
+  line-height: 1.222;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
