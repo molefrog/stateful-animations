@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Playground from 'playground'
+import Presentation from 'slides/presentation'
 
 document.addEventListener('DOMContentLoaded', function () {
-  ReactDOM.render(<Playground />, document.querySelector('.application'))
+  ReactDOM.render(<Presentation />, document.querySelector('.application'))
 })

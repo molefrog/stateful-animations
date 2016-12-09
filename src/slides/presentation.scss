@@ -1,0 +1,106 @@
+@import '../variables';
+
+body {
+  font-family: Rubik, sans-serif;
+  color: $black;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.application {
+  height: 100vh;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.presentation {
+  flex-grow: 1;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+}
+
+.presentation__tool-bar {
+  flex-shrink: 0;
+  width: 280px;
+  padding: 20px 25px;
+  background-color: #FAFAFA;
+
+  box-shadow: 0px 0px 6px rgba(0,0,0,0.2);
+}
+
+.presentation__logo {
+  font-size: 26px;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  padding-right: 20px;
+}
+
+.presentation__content {
+  flex-grow: 1;
+  overflow-y: auto;
+  align-self: stretch;
+
+  background-color: #FAFAFA;
+  padding: 32px;
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.presentation__plan-item {
+  margin-bottom: 5px;
+  cursor: pointer;
+  color: #666;
+  padding: 5px 0;
+}
+
+.presentation__plan-item--future {
+  color: #E0E0E0;
+}
+
+.presentation__plan-item--current {
+  color: black;
+  text-shadow: 1px 2px 0px yellow;
+}
+
+.presentation__slide {
+  display: inline-block;
+  width: 900px;
+  height: 600px;
+  background-color: white;
+
+  overflow: hidden;
+
+  border-radius: 4px;
+
+  box-shadow: 0px 5px 16px -2px rgba(0,0,0,0.1);
+
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.text-slide {
+  display: flex;
+  flex-flow: row nowrap;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-slide__text {
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+
+  max-width: 65%;
+}
+
+
+
+

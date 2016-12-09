@@ -1,0 +1,41 @@
+
+.transistor-slide {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.transistor-slide__code {
+  background-color: rgba(yellow, 0.1);
+  align-self: stretch;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.transistor-slide__controls {
+  .button {
+    margin-right: 6px;
+  }
+}
+
+.transistor__area {
+  position: relative;
+}
+
+.transistor__point {
+  width: 16px;
+  height: 16px;
+  left: -8px;
+  top: -8px;
+
+  background-color: black;
+  border-radius: 26px;
+  display: inline-block;
+  position: absolute;
+
+  transition: all 0.25s ease;
+}
+
+.transistor__point--no-transition {
+  transition: none;
+}
