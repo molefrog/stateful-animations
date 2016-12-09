@@ -11,6 +11,7 @@
     "npm": "3.10.3"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "d3-array": "^1.0.1",
     "d3-ease": "^1.0.2",
     "d3-force": "^1.0.3",
