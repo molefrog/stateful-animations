@@ -17,27 +17,27 @@ class ClassicPoll extends Component {
 
         <div className='classic-poll__subheader'>
           Для отправки голоса пройдите по ссылке
-          <span>инвест61.рф</span>
+          <span className='classic-poll__subheader-link'>{poll.url}</span>
         </div>
 
         <div className='classic-poll__results'>
           {results.map(result => (
-            <div className='classic-poll__result'>
-              <div className='classic-poll__result-header'>
-                {result.text}
-              </div>
-
+            <div key={result.id} className='classic-poll__result'>
               <div className='classic-poll__line'>
+                <div className='classic-poll__result-header'>
+                  {result.text}
+                </div>
+
                 <div className='classic-poll__progress-wrap'>
                   <div className='classic-poll__progress'
                     style={{
                       backgroundColor: result.color,
-                      width: `${Math.max(1, result.percent * 100)}%` }} />
+                      transform: `scaleX(${Math.max(0.02, result.percent)})` }} />
                 </div>
+              </div>
 
-                <div className='classic-poll__percent'>
-                  {`${(result.percent * 100).toFixed(0)}%`}
-                </div>
+              <div className='classic-poll__percent'>
+                {`${(result.percent * 100).toFixed(0)}%`}
               </div>
             </div>
 

@@ -6,9 +6,10 @@ const dummyI18n = (text, ...rest) => text
 class SimplePoll extends Component {
   render () {
     const i18n = this.props.i18n || dummyI18n
-    const subHeader = i18n('%voters on ', {
-      voters: i18n('total %0 voters', this.getVotersCount())
-    })
+    const subHeader = `${this.getVotersCount()} votes on ` ||
+      i18n('%voters on ', {
+        voters: i18n('total %0 voters', this.getVotersCount())
+      })
 
     const { poll } = this.props
 
@@ -81,6 +82,5 @@ class SimplePoll extends Component {
     })
   }
 }
-
 
 export default SimplePoll
