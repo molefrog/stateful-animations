@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900px" height="600px" viewBox="0 0 900 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Desktop Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-Copy">
+            <g id="Group-3" transform="translate(250.000000, 189.000000)">
+                <g id="Group-2" transform="translate(6.000000, 0.000000)">
+                    <text id="Состояние-#1" font-family="Rubik-Medium, Rubik" font-size="28" font-weight="400" fill="#030303">
+                        <tspan x="16.748" y="30">Состояние #1</tspan>
+                    </text>
+                    <g id="Group" transform="translate(293.000000, 0.000000)">
+                        <rect id="Rectangle-2" fill="#518BF6" x="0" y="0" width="95" height="38" rx="19"></rect>
+                        <text id="DOM" font-family="Rubik-Medium, Rubik" font-size="28" font-weight="400" fill="#FFFFFF">
+                            <tspan x="16.06" y="29">DOM</tspan>
+                        </text>
+                    </g>
+                    <path d="M230.5,20 L268.5,20" id="Line" stroke="#000000" stroke-width="2" fill="#000000"></path>
+                    <path id="Line-decoration-1" d="M230.5,17 L230.5,23" stroke="#000000" stroke-width="2" fill="#000000"></path>
+                    <path id="Line-decoration-2" d="M268.5,20 L257.7,17 L257.7,23 L268.5,20 Z" stroke="#000000" stroke-width="2" fill="#000000"></path>
+                </g>
+                <g id="Group-2" transform="translate(6.000000, 126.000000)">
+                    <text id="Состояние-#3" font-family="Rubik-Medium, Rubik" font-size="28" font-weight="400" fill="#030303">
+                        <tspan x="12.072" y="30">Состояние #3</tspan>
+                    </text>
+                    <g id="Group" transform="translate(293.000000, 0.000000)">
+                        <rect id="Rectangle-2" fill="#6EDDA4" x="0" y="0" width="95" height="38" rx="19"></rect>
+                        <text id="DOM" font-family="Rubik-Medium, Rubik" font-size="28" font-weight="400" fill="#FFFFFF">
+                            <tspan x="16.06" y="29">DOM</tspan>
+                        </text>
+                    </g>
+                    <path d="M230.5,20 L268.5,20" id="Line" stroke="#000000" stroke-width="2" fill="#000000"></path>
+                    <path id="Line-decoration-1" d="M230.5,17 L230.5,23" stroke="#000000" stroke-width="2" fill="#000000"></path>
+                    <path id="Line-decoration-2" d="M268.5,20 L257.7,17 L257.7,23 L268.5,20 Z" stroke="#000000" stroke-width="2" fill="#000000"></path>
+                </g>
+                <g id="Group-2" transform="translate(6.000000, 63.000000)">
+                    <text id="Состояние-#2" font-family="Rubik-Medium, Rubik" font-size="28" font-weight="400" fill="#030303">
+                        <tspan x="12.38" y="30">Состояние #2</tspan>
+                    </text>
+                    <g id="Group" transform="translate(293.000000, 0.000000)">
+                        <rect id="Rectangle-2" fill="#FD789C" x="0" y="0" width="95" height="38" rx="19"></rect>
+                        <text id="DOM" font-family="Rubik-Medium, Rubik" font-size="28" font-weight="400" fill="#FFFFFF">
+                            <tspan x="16.06" y="29">DOM</tspan>
+                        </text>
+                    </g>
+                    <path d="M230.5,20 L268.5,20" id="Line" stroke="#000000" stroke-width="2" fill="#000000"></path>
+                    <path id="Line-decoration-1" d="M230.5,17 L230.5,23" stroke="#000000" stroke-width="2" fill="#000000"></path>
+                    <path id="Line-decoration-2" d="M268.5,20 L257.7,17 L257.7,23 L268.5,20 Z" stroke="#000000" stroke-width="2" fill="#000000"></path>
+                </g>
+                <text id=".-.-." font-family="Rubik-Medium, Rubik" font-size="28" font-weight="400" fill="#030303">
+                    <tspan x="182.318" y="215">. . . </tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

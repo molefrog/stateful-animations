@@ -96,21 +96,49 @@ PresentationContainer.childContextTypes = {
   slide: React.PropTypes.number
 }
 
-import Slide, { TextSlide } from './slide'
+import Slide, { TextSlide, IframeSlide } from './slide'
 import TransistorSlide from './Transistor'
 
 const Presentation = (props) =>
   <PresentationContainer name='Грязные анимации в мире состояний'>
-
-    <TextSlide name='Введение' image='http://i.giphy.com/d7PElE9GaaodG.gif' >
+    <TextSlide name='Введение' image='http://i.giphy.com/d7PElE9GaaodG.gif'>
       Грязные анимации в мире состояний
     </TextSlide>
 
-    <TransistorSlide name='CSS анимации в React работают из коробки' />
-    <TransistorSlide name='React Motion добавляет пружины в чистом виде' motionEnabled />
+    <Slide name='О докладчике' image='/images/alyosha.png' />
+    <TextSlide
+      overlay={0.2}
+      name='В Ростове есть клевые ребята Code Hipsters' image='/images/es6.gif'
+      subText='сообщество программистов и цифровых дизайнеров из Ростова'>
+      Code Hipsters
+    </TextSlide>
+
+    <TextSlide overlay={0.2}
+      name='React — Automatic View Library' image='/images/react.gif'
+      subText='Automatic View Library' >
+      React
+    </TextSlide>
+
+    <Slide name='Состояние отображается в DOM' image='/images/dom-state-1.svg' />
+    <Slide name='Приложение — это цепочка состояний' image='/images/dom-state-2.svg' />
 
     <Slide name='Используя подход состояний, можно путешествовать во времени' image='/images/retrodux.gif' />
-    <Slide name='CSS Анимации' />
+
+    <TextSlide overlay={0.2}
+      name='CSS transitions работают в 85% случаев' image='/images/bean.gif'
+      subText='работают в 85% случаев' >
+      CSS transitions
+    </TextSlide>
+
+    <TransistorSlide name='CSS transitions в React — проще простого' />
+
+    <TextSlide overlay={0.2} name='Time-based анимации' image='/images/charlie.gif' subText='$.animate, Velocity, anime.js etc.'>
+      Time-based animations
+    </TextSlide>
+
+    <IframeSlide url='http://theseguys.io' name='requestAnimationFrame очень удобен для произвольных сложных анимаций' />
+
+    <TransistorSlide name='React Motion добавляет пружины в чистом виде' motionEnabled />
   </PresentationContainer>
 
 export default Presentation

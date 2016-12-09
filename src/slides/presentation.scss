@@ -28,6 +28,9 @@ body {
   background-color: #FAFAFA;
 
   box-shadow: 0px 0px 6px rgba(0,0,0,0.2);
+
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 .presentation__logo {
@@ -37,6 +40,8 @@ body {
   margin-bottom: 24px;
   padding-bottom: 12px;
   padding-right: 20px;
+
+  flex-shrink: 0;
 }
 
 .presentation__content {
@@ -51,6 +56,12 @@ body {
   flex-flow: row nowrap;
   align-items: flex-start;
   justify-content: center;
+}
+
+.presentation__plan {
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow-y: auto;
 }
 
 .presentation__plan-item {
@@ -83,22 +94,49 @@ body {
 
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .text-slide {
   display: flex;
   flex-flow: row nowrap;
+  align-items: strech;
+}
+
+.text-slide__content {
+  flex-grow: 1;
+  display: flex;
+
+  flex-flow: column nowrap;
   text-align: center;
   justify-content: center;
   align-items: center;
+
+  background: rgba(0,0,0,0.3);
 }
 
 .text-slide__text {
-  font-size: 48px;
+  font-size: 52px;
   font-weight: bold;
   color: white;
 
   max-width: 65%;
+}
+
+.text-slide__sub-text {
+  font-size: 28px;
+  color: white;
+
+  max-width: 70%;
+}
+
+.iframe-slide__iframe {
+  border: none;
+
+  width: 900px;
+  height: 600px;
+
+  transform-origin: 0 0;
 }
 
 
