@@ -1,0 +1,50 @@
+
+.poll-slide,
+.poll-slide__wrap {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.poll-slide__controls {
+  max-width: 75%;
+  margin: 0 auto;
+  text-align: center;
+
+  padding: 20px;
+  padding-bottom: 10px;
+
+  .button {
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
+}
+
+.poll-slide__speed {
+  text-align: center;
+}
+
+.poll-slide__content {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.poll-slide__polls {
+  text-align: center;
+  .poll-zoom__poll {
+    margin: 4px;
+  }
+}
+
+.poll-zoom__poll {
+  overflow: hidden;
+  border: 1px solid #e1e1e1;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+}
+
+.poll-zoom__poll-wrap {
+  transform-origin: left top;
+}

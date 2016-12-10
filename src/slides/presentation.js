@@ -97,7 +97,8 @@ PresentationContainer.childContextTypes = {
 }
 
 import Slide, { TextSlide, IframeSlide } from './slide'
-import TransistorSlide from './Transistor'
+import TransistorSlide from './transistor'
+import { CloudPollSlide, PollsSlide } from './poll-slides'
 
 const Presentation = (props) =>
   <PresentationContainer name='Грязные анимации в мире состояний'>
@@ -142,6 +143,9 @@ const Presentation = (props) =>
     <IframeSlide url='http://theseguys.io' name='requestAnimationFrame очень удобен для произвольных сложных анимаций' />
 
     <TransistorSlide name='React Motion использует requestAnimationFrame. Позволяет задавать пружинные анимации декларативно.' motionEnabled />
+
+    <CloudPollSlide name='Некоторые анимации сложно описать декларативно' />
+    <PollsSlide name='Компоненты, грязные внутри, легко тестировать' />
   </PresentationContainer>
 
 export default Presentation

@@ -26,8 +26,13 @@ class CloudPoll extends React.Component {
     const { poll } = this.props
     const votesText = 'votes on'
 
+    const cloudPollStyle = {
+      width: `${this.props.width}px`,
+      height: `${this.props.height}px`
+    }
+
     return (
-      <div className='cloud-poll' ref={n => { this.$el = n }}>
+      <div className='cloud-poll' style={cloudPollStyle} ref={n => { this.$el = n }}>
         <div className='cloud-poll__poll-question'>{poll.title}</div>
         <div className='cloud-poll__balls-container' ref={n => { this.$ballsContainer = n }} />
         <div className='cloud-poll__cloud-poll-layout'>
@@ -298,6 +303,8 @@ class CloudPoll extends React.Component {
 
 CloudPoll.defaultProps = {
   alphaTime: 1.4,
+  width: 1024,
+  height: 768,
   offsetContainerClass: 'playground__poll'
 }
 
