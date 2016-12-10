@@ -29,6 +29,10 @@ class BubblePoll extends Component {
     this.simulation.restart()
   }
 
+  componentWillUnmount () {
+    this.simulation.stop()
+  }
+
   onTick () {
     const canvas = this.pollEl.querySelector('canvas')
     const context = canvas.getContext('2d')

@@ -3,10 +3,12 @@ import React from 'react'
 import PresentationContainer from './presentation-container'
 import Slide, { TextSlide, IframeSlide } from './slide'
 import TransistorSlide from './transistor'
-import { CloudPollSlide, PollsSlide } from './poll-slides'
+import { CloudPollSlide, PollsSlide, BubblePollSlide } from './poll-slides'
+import HooksSlide from './hooks-slides'
 
 const Presentation = (props) =>
   <PresentationContainer name='Грязные анимации в мире состояний'>
+
     <TextSlide name='Введение' image='/images/storm.gif'>
       Грязные анимации в мире состояний
     </TextSlide>
@@ -55,7 +57,27 @@ const Presentation = (props) =>
       name='React Motion использует requestAnimationFrame.
       Позволяет задавать пружинные анимации декларативно.' motionEnabled />
 
-    <CloudPollSlide name='Некоторые анимации сложно описать декларативно' />
+    <TextSlide overlay={0.2}
+      name='React Lifecycle Hooks'
+      image='/images/old-dance-1.gif'
+      subText='componentDidMount и др.' >
+      Lifecycle Hooks
+    </TextSlide>
+
+    <Slide name='Паттерн #1. Анимации на «входе»' image='/images/hooks-code.jpg' />
+
+    <HooksSlide name='Проблемы с выходом' />
+
+    <Slide name='Паттерн #2. Change Detection' image='/images/hooks-code-2.jpg' />
+
+    <CloudPollSlide name='Паттерн Change Detection на примере' />
+
+    <Slide name='Паттерн #3. Перехват ответственности' image='/images/hooks-code-3.jpg' />
+
+    <BubblePollSlide name='Перехват ответственности на примере' />
+
+    <PollsSlide name='Правильно построенные «грязные компоненты» удобно тестировать' />
+
   </PresentationContainer>
 
 export default Presentation

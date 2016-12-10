@@ -166,6 +166,24 @@ export class CloudPollSlide extends Component {
   }
 }
 
+export class BubblePollSlide extends Component {
+  render () {
+    const width = 1024
+    const height = 768
+
+    return (
+      <Slide {...this.props} extraClass='poll-slide'>
+        <PollControls>
+          {poll =>
+            <PollZoom width={width} height={height} zoom={0.65}>
+              <BubblePoll width={width} height={height}
+                offsetContainerClass='poll-zoom__poll' poll={poll} />
+            </PollZoom>}
+        </PollControls>
+      </Slide>)
+  }
+}
+
 export const PollsSlide = (props) => {
   const width = 1024
   const height = 768
