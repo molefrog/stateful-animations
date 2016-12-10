@@ -106,7 +106,7 @@ class PollControls extends Component {
     return (
       <div className='poll-slide__wrap'>
         <div className='poll-slide__content'>
-          { this.props.children(makePollPayload(this.state.poll)) }
+          {this.props.children(makePollPayload(this.state.poll))}
         </div>
 
         <div className='poll-slide__controls'>
@@ -148,7 +148,7 @@ export class CloudPollSlide extends Component {
     return (
       <Slide {...this.props} extraClass='poll-slide'>
         <PollControls>
-          { poll =>
+          {poll =>
             <PollZoom width={width} height={height} zoom={0.65}>
               <CloudPoll width={width} height={height}
                 alphaTime={alphaTime}
@@ -158,7 +158,7 @@ export class CloudPollSlide extends Component {
 
         <div className='poll-slide__speed'>
           <Button icon='⭐' checked={alphaTime === 4.0} onClick={() => this.toggleSpeed()}>
-            { alphaTime === 1.4 ? 'нормально' : 'медленно' }
+            {alphaTime === 1.4 ? 'нормально' : 'медленно'}
           </Button>
         </div>
 
@@ -173,7 +173,7 @@ export const PollsSlide = (props) => {
   return (
     <Slide {...props} extraClass='poll-slide'>
       <PollControls>
-        { poll =>
+        {poll =>
           <div className='poll-slide__polls'>
             <PollZoom width={width} height={height} zoom={0.3}>
               <CloudPoll width={width} height={height}
