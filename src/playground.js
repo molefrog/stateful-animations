@@ -1,24 +1,22 @@
 import React, { Component } from 'react'
 import './playground.scss'
 
-import SimplePoll from 'simple-poll'
-import CloudPoll from 'cloud-poll'
-import BubblePoll from 'bubble-poll'
-import ClassicPoll from 'classic-poll'
+import SimplePoll from 'polls/simple-poll'
+import CloudPoll from 'polls/cloud-poll'
+import BubblePoll from 'polls/bubble-poll'
+import ClassicPoll from 'polls/classic-poll'
 
 const makeUid = () => (Math.random() * 0xffffff | 0)
 
 const initialPoll = {
-  title: 'Что вы считаете главным сдерживающим фактором инвестиционного роста в регионе?',
+  title: 'What is the best album of 2016?',
   url: 'otts.ficus.io',
   choices: [
-    { id: 'a1', color: '#29BECE', text: 'Высокие тарифы' },
-    { id: 'a2', color: '#2CCC85', text: 'Недоступность инфраструктуры' },
-    { id: 'a3', color: '#E17AC1', text: 'Избыточный контроль и надзор' },
-    { id: 'a4', color: '#FD9998', text: 'Отсутствие "дешевых" денег' },
-    { id: 'a5', color: '#549DF2', text: 'Падение потребительского спроса' },
-    { id: 'a6', color: '#E82339', text: 'Кадровый дефицит' },
-    { id: 'a7', color: '#B59CC8', text: 'Трудности в получении госуслуг' }
+    { id: 'a1', color: 'rgba(61, 118, 230, 1.00)', text: 'Chance The Rapper – Coloring Book' },
+    { id: 'a2', color: 'rgba(241, 196, 15, 1.00)', text: 'Beyoncé – Lemonade' },
+    { id: 'a3', color: 'rgba(230, 126, 34, 1.00)', text: 'Frank Ocean – Blonde  ' },
+    { id: 'a4', color: 'rgba(231, 76, 60, 1.00)', text: 'David Bowie – Star' },
+    { id: 'a5', color: 'rgba(142, 68, 173, 1.00)', text: 'Kanye West – The Life Of Pablo' }
   ],
   voters: []
 }
@@ -116,19 +114,16 @@ class Playground extends Component {
           <div className='playground__button-line'>
             <PlaygroundButton icon='🍭' onClick={() => this.changeVotes(0.2)}>20%</PlaygroundButton>
             <PlaygroundButton icon='🍭' onClick={() => this.changeVotes(0.8)}>80%</PlaygroundButton>
-            <PlaygroundButton icon='🍭' onClick={() => this.changeVotes(0.8)}>100%</PlaygroundButton>
           </div>
 
           <div className='playground__button-line'>
             <PlaygroundButton icon='🐥' onClick={() => this.addVotes(1)} />
             <PlaygroundButton icon='🐥🐥' onClick={() => this.addVotes(10)} />
-            <PlaygroundButton icon='🐥🐥🐥' onClick={() => this.addVotes(50)} />
           </div>
 
           <div className='playground__button-line'>
             <PlaygroundButton icon='🔥' onClick={() => this.addVotes(1)} />
             <PlaygroundButton icon='🔥🔥' onClick={() => this.addVotes(5)} />
-            <PlaygroundButton icon='🔥🔥🔥' onClick={() => this.addVotes(50)} />
           </div>
         </div>
 

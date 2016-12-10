@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900px" height="600px" viewBox="0 0 900 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Desktop Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="198" height="83"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="198" height="83" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-Copy">
+            <g id="Group-5" transform="translate(66.000000, 228.000000)">
+                <g id="Group" transform="translate(425.000000, 17.000000)">
+                    <rect id="Rectangle-3" fill="#CFCFCF" x="0" y="5" width="285" height="5" rx="2.5"></rect>
+                    <circle id="Oval" fill="#6EDDA4" cx="23.5" cy="7.5" r="7.5"></circle>
+                    <circle id="Oval" fill="#6EDDA4" cx="53.5" cy="7.5" r="7.5"></circle>
+                    <circle id="Oval" fill="#FFE90E" cx="107.5" cy="7.5" r="7.5"></circle>
+                    <circle id="Oval" fill="#FF935C" cx="160.5" cy="7.5" r="7.5"></circle>
+                    <circle id="Oval" fill="#FF6566" cx="196.5" cy="7.5" r="7.5"></circle>
+                    <circle id="Oval" fill="#FF6566" cx="226.5" cy="7.5" r="7.5"></circle>
+                    <circle id="Oval" fill="#FF6566" cx="249.5" cy="7.5" r="7.5"></circle>
+                    <circle id="Oval" fill="#FF6566" cx="272.5" cy="7.5" r="7.5"></circle>
+                </g>
+                <g id="Group-2" transform="translate(425.000000, 149.000000)">
+                    <rect id="Rectangle-3" fill="#CFCFCF" x="0" y="5" width="285" height="5" rx="2.5"></rect>
+                    <circle id="Oval" fill="#6EDDA4" cx="23.5" cy="7.5" r="7.5"></circle>
+                    <circle id="Oval" fill="#6EDDA4" cx="53.5" cy="7.5" r="7.5"></circle>
+                    <circle id="Oval" fill="#6EDDA4" cx="102.5" cy="7.5" r="7.5"></circle>
+                    <circle id="Oval" fill="#6EDDA4" cx="139.5" cy="7.5" r="7.5"></circle>
+                    <circle id="Oval" fill="#6EDDA4" cx="169.5" cy="7.5" r="7.5"></circle>
+                    <circle id="Oval" fill="#6EDDA4" cx="223.5" cy="7.5" r="7.5"></circle>
+                    <circle id="Oval" fill="#6EDDA4" cx="241.5" cy="7.5" r="7.5"></circle>
+                    <circle id="Oval" fill="#6EDDA4" cx="263.5" cy="7.5" r="7.5"></circle>
+                </g>
+                <text id="может-не-успеть-испо" font-family="Rubik-Regular, Rubik" font-size="20" font-weight="normal" fill="#656565">
+                    <tspan x="75.26" y="54">может не успеть исполниться </tspan>
+                    <tspan x="130.34" y="78">в заданный промежуток</tspan>
+                </text>
+                <text id="сработает-в-наиболее" font-family="Rubik-Regular, Rubik" font-size="20" font-weight="normal" fill="#656565">
+                    <tspan x="21.78" y="189">сработает в наиболее оптимальное </tspan>
+                    <tspan x="136.64" y="213">для перерисовки время</tspan>
+                </text>
+                <text id="setTimeout" font-family="SFMono-Regular, SF Mono" font-size="24" font-weight="normal" fill="#030303">
+                    <tspan x="215.640625" y="23">setTimeout</tspan>
+                </text>
+                <text id="requestAnimationFram" font-family="SFMono-Regular, SF Mono" font-size="24" font-weight="normal" fill="#030303">
+                    <tspan x="54.4453125" y="158">requestAnimationFrame</tspan>
+                </text>
+            </g>
+            <g id="Group-4" transform="translate(351.000000, 55.000000)">
+                <text id="x-→-x-+-dx" font-family="Rubik-Regular, Rubik" font-size="24" font-weight="normal" fill="#030303">
+                    <tspan x="41.268" y="29">x </tspan>
+                    <tspan x="60.06" y="29" font-family="LucidaGrande, Lucida Grande">→</tspan>
+                    <tspan x="84.06" y="29"> x + dx </tspan>
+                </text>
+                <text id="dx-=-dv-×-dt" font-family="Rubik-Regular, Rubik" font-size="24" font-weight="normal" fill="#030303">
+                    <tspan x="31.8609375" y="63">dx </tspan>
+                    <tspan x="64.9089375" y="63" font-family="LucidaGrande, Lucida Grande">=</tspan>
+                    <tspan x="83.9870625" y="63"> dv × dt </tspan>
+                </text>
+                <use id="Rectangle-4" stroke="#000000" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

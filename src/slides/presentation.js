@@ -125,8 +125,8 @@ const Presentation = (props) =>
     <Slide name='Используя подход состояний, можно путешествовать во времени' image='/images/retrodux.gif' />
 
     <TextSlide overlay={0.2}
-      name='CSS transitions работают в 85% случаев' image='/images/bean.gif'
-      subText='работают в 85% случаев' >
+      name='CSS transitions работают в 99% случаев' image='/images/bean.gif'
+      subText='' >
       CSS transitions
     </TextSlide>
 
@@ -136,9 +136,12 @@ const Presentation = (props) =>
       Time-based animations
     </TextSlide>
 
+    <Slide name='Анимации: ожидание' image='/images/time-based-1.svg' />
+    <Slide name='Анимации: реальность' image='/images/time-based-2.svg' />
+
     <IframeSlide url='http://theseguys.io' name='requestAnimationFrame очень удобен для произвольных сложных анимаций' />
 
-    <TransistorSlide name='React Motion добавляет пружины в чистом виде' motionEnabled />
+    <TransistorSlide name='React Motion использует requestAnimationFrame. Позволяет задавать пружинные анимации декларативно.' motionEnabled />
   </PresentationContainer>
 
 export default Presentation
