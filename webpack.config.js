@@ -42,13 +42,6 @@ var config = {
   ],
 
   module: {
-    preLoaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'standard'
-      }
-    ],
     loaders: [
       {
         test: /\.jsx?$/,
