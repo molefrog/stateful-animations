@@ -12,13 +12,45 @@ const cycleRot = (collection, el) =>
 
 const TransistorCode = ({ points }) =>
   <CodePreview>
-{`  <div>
-    <div style="transform: translate(`}<H text={points[0].x.toFixed(2) + 'px'} />{`,`}<H text={points[0].y.toFixed(2) + 'px'} />{`)" />
-    <div style="transform: translate(`}<H text={points[1].x.toFixed(2) + 'px'} />{`,`}<H text={points[1].y.toFixed(2) + 'px'} />{`)" />
-     ...
-  </div>
-`}
+    {'  <div>\n'}
+    {'    <div style="transform: translate('}
+    <H text={points[0].x.toFixed(2) + 'px'} />
+    {','}
+    <H text={points[0].y.toFixed(2) + 'px'} />
+    {')" />\n'}
+    {'    ...\n'}
+    {'  </div>'}
   </CodePreview>
+
+const TransistorCodeMotion = ({ points }) => {
+  const p = points[0]
+
+  return (
+    <CodePreview>
+      {'  <div>\n'}
+
+      {'    <Motion style={{x: spring('}
+      <H text={p.x.toFixed(2)} />
+      {'), y: spring('}
+      <H text={p.y.toFixed(2)} />
+      {')}}>\n'}
+
+      <Motion
+        defaultStyle={{x: 0.0, y: 0.0}}
+        style={{x: spring(p.x, presets.wobbly), y: spring(p.y, presets.wobbly)}}>
+        {(v) =>
+          <span>
+            {`      <div style="transform: translate(`}
+            <H text={v.x.toFixed(2) + 'px'} />{`,`}<H text={v.y.toFixed(2) + 'px'} />
+            {`)" />\n`}
+          </span>
+        }
+      </Motion>
+      {'    </Motion>\n'}
+      {'    ...\n'}
+      {'  <div>'}
+    </CodePreview>)
+}
 
 const TransistorPoints = ({ points, withMotion, width, height }) => {
   const pointsList = points.map((p, i) => {
@@ -120,7 +152,10 @@ class Transistor extends Component {
     return (
       <Slide {...this.props} extraClass='transistor-slide'>
         <div className='transistor-slide__code'>
-          <TransistorCode points={points} />
+          {motionEnabled
+            ? <TransistorCodeMotion points={points} />
+            : <TransistorCode points={points} />
+          }
         </div>
 
         <TransistorPoints width={width} height={height} points={points} withMotion={motionEnabled} />
