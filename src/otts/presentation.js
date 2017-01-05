@@ -3,7 +3,10 @@ import cx from 'classnames'
 
 import './presentation.scss'
 
-class PresentationContainer extends Component {
+const KEY_CODE_LEFT = 37
+const KEY_CODE_RIGHT = 39
+
+class Presentation extends Component {
   constructor () {
     super()
     this.state = {
@@ -14,11 +17,11 @@ class PresentationContainer extends Component {
   }
 
   handleKeyDown (e) {
-    if (e.keyCode === 39) {
+    if (e.keyCode === KEY_CODE_RIGHT) {
       this.shiftSlide(1)
     }
 
-    if (e.keyCode === 37) {
+    if (e.keyCode === KEY_CODE_LEFT) {
       this.shiftSlide(-1)
     }
   }
@@ -92,9 +95,9 @@ class PresentationContainer extends Component {
   }
 }
 
-PresentationContainer.childContextTypes = {
+Presentation.childContextTypes = {
   slide: React.PropTypes.number
 }
 
-export default PresentationContainer
+export default Presentation
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Motion, TransitionMotion, spring, presets } from 'react-motion'
 
 import Button from 'ui/button'
-import Slide from './slide'
+import { Slide } from 'otts'
 
 // Utils
 const makeKey = (t, i) => `${t}-${i}`

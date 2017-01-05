@@ -3,7 +3,7 @@ import { Motion, spring, presets } from 'react-motion'
 
 import Button from 'ui/button'
 import CodePreview, { Hightlight as H } from 'ui/code-preview'
-import Slide from './slide'
+import { Slide } from 'otts'
 
 import './transistor.scss'
 

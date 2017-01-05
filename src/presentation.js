@@ -1,14 +1,16 @@
 import React from 'react'
 
-import PresentationContainer from './presentation-container'
-import Slide, { TextSlide, IframeSlide } from './slide'
-import TransistorSlide from './transistor'
-import { CloudPollSlide, PollsSlide, BubblePollSlide } from './poll-slides'
-import HooksSlide from './hooks-slides'
+// Presentation pieces
+import { Presentation, Slide, TextSlide, IframeSlide } from 'otts'
 
-const Presentation = (props) =>
-  <PresentationContainer name='Грязные анимации в мире состояний'>
+// Interactive slides
+import TransistorSlide from 'slides/transistor'
+import { CloudPollSlide, PollsSlide, BubblePollSlide } from 'slides/poll-slides'
+import HooksSlide from 'slides/hooks-slides'
+import MotionGhostSlide from 'slides/motion-ghost-slide'
 
+const DirtyAnimations = (props) =>
+  <Presentation name='Грязные анимации в мире состояний'>
     <TextSlide name='Введение' image='/images/storm.gif'>
       Грязные анимации в мире состояний
     </TextSlide>
@@ -34,7 +36,7 @@ const Presentation = (props) =>
 
     <TextSlide overlay={0.2}
       name='CSS transitions работают в 99% случаев' image='/images/bean.gif'
-      subText='' >
+      subText='Подойдут для большинства задач' >
       CSS transitions
     </TextSlide>
 
@@ -78,6 +80,15 @@ const Presentation = (props) =>
 
     <PollsSlide name='Правильно построенные «грязные компоненты» удобно тестировать' />
 
-  </PresentationContainer>
+    <Slide name='Резюме и ресурсы' image='/images/resources.jpg' />
 
-export default Presentation
+    <TextSlide overlay={0.2}
+      name='Конец'
+      image='/images/old-dance-2.gif'
+      subText='Анимируйте на здоровье' >
+      Спасибо
+    </TextSlide>
+
+  </Presentation>
+
+export default DirtyAnimations

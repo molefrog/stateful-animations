@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
 
-class Slide extends Component {
+export class Slide extends Component {
   render () {
     const isActive = this.props.index === this.context.slide
     if (!isActive) return null
@@ -42,4 +42,3 @@ export const IframeSlide = (props) =>
     <iframe className='iframe-slide__iframe' src={props.url} />
   </Slide>
 
-export default Slide

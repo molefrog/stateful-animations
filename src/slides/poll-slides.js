@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Slide from './slide'
+import { Slide } from 'otts'
 
 import SimplePoll from 'polls/simple-poll'
 import CloudPoll from 'polls/cloud-poll'

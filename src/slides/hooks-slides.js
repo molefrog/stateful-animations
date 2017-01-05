@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Button from 'ui/button'
-import Slide from './slide'
+import { Slide } from 'otts'
 
 import Velocity from 'velocity-animate'
 import { findDOMNode } from 'react-dom'
