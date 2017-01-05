@@ -23,7 +23,7 @@ body {
 
 .presentation__tool-bar {
   flex-shrink: 0;
-  width: 280px;
+  width: 240px;
   padding: 20px 25px;
   background-color: #FAFAFA;
 
@@ -95,6 +95,13 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+.presentation__slide--centered {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .text-slide {

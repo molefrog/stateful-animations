@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import cx from 'classnames'
 
 class Slide extends Component {
   render () {
     const isActive = this.props.index === this.context.slide
-
     if (!isActive) return null
 
     const slideStyle = {
@@ -11,7 +11,12 @@ class Slide extends Component {
     }
 
     return (
-      <div className={`presentation__slide ${this.props.extraClass}`}
+      <div
+        className={cx(
+          'presentation__slide',
+          {'presentation__slide--centered': this.props.centered},
+          this.props.extraClass
+        )}
         style={slideStyle}>
         {this.props.children}
       </div>)
