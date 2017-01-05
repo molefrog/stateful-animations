@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Slide } from 'otts'
 
-import SimplePoll from 'polls/simple-poll'
-import CloudPoll from 'polls/cloud-poll'
-import BubblePoll from 'polls/bubble-poll'
-import ClassicPoll from 'polls/classic-poll'
+import SimplePoll from 'ficus/simple-poll'
+import CloudPoll from 'ficus/cloud-poll'
+import BubblePoll from 'ficus/bubble-poll'
+import ClassicPoll from 'ficus/classic-poll'
 
 import Button from 'ui/button'
 
