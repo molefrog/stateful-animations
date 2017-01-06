@@ -16,7 +16,7 @@ const DirtyAnimations = (props) =>
       Грязные анимации в мире состояний
     </TextSlide>
 
-    <Slide name='О докладчике' image='/images/alyosha.png' />
+    <Slide name='О докладчике' image='/images/about-author.jpg' />
 
     <TextSlide overlay={0.2}
       name='React — Automatic View Library' image='/images/react.gif'
@@ -79,10 +79,19 @@ const DirtyAnimations = (props) =>
 
     <PollsSlide name='Правильно построенные «грязные компоненты» удобно тестировать' />
 
+    <TextSlide overlay={0.2}
+      name='Представляем Redux Actuator!'
+      image='/images/robot-dance.gif'
+      subText='github.com/molefrog/redux-actuator' >
+      Redux Actuator
+    </TextSlide>
+
     <Slide
       name='Redux Actuator позволяет слать события компонентам через Redux store'>
       <TalkingHeads />
     </Slide>
+
+    <Slide name='Актуатор в действии' image='/images/actuator-code.jpg' />
 
     <Slide
       name='Redux Actuator поддерживает механизм каналов'>
