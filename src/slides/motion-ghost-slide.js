@@ -57,6 +57,20 @@ class MotionGhost extends Component {
 
     this.handleMouseMove = this.handleMouseMove.bind(this)
     this.handleMouseLeave = this.handleMouseLeave.bind(this)
+    this.switchCorners = this.switchCorners.bind(this)
+  }
+
+  switchCorners () {
+    this.setState({
+      alpha: this.state.alpha ? 0.0 : 1.0,
+      ghosts: []
+    })
+  }
+
+  componentDidMount () {
+    if (!this.state.ghosts.length) {
+      this.switchCorners()
+    }
   }
 
   handleMouseMove (event) {
@@ -195,15 +209,15 @@ class MotionGhost extends Component {
         <div className='transistor-slide__controls'>
           <Button
             icon={alpha ? '👈' : '👉'}
-            onClick={() => this.setState({alpha: alpha ? 0.0 : 1.0, ghosts: []})}>
-            {alpha ? 'сюда' : 'туда'}
+            onClick={this.switchCorners}>
+            {alpha ? 'Cюда' : 'Туда'}
           </Button>
 
           <Button
             icon={'🔫'}
             checked={isWobble}
             onClick={() => this.setState({isWobble: !isWobble})}>
-            {'режим желе'}
+            {'Режим желе'}
           </Button>
         </div>
       </Slide>
