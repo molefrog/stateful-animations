@@ -30,6 +30,13 @@ class ThisGuy extends React.Component {
       />
   }
 
+  doMagic (phrase) {
+    const container = findDOMNode(this)
+
+    Velocity(container, { scaleY: 0.1 }, { duration: 100 })
+    Velocity(container, { scaleY: 1.0 }, { duration: 800, easing: [30, 5] })
+  }
+
   say (phrase) {
     const container = findDOMNode(this)
     if (!container) return

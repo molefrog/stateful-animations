@@ -10,7 +10,6 @@ import createEngine, { actuate, Actuator } from 'redux-actuator'
 import ThisGuy from './this-guy'
 import ActionLogger from './action-logger'
 import Button from 'ui/button'
-import { Slide } from 'otts'
 
 import './talking-heads.scss'
 
@@ -37,6 +36,10 @@ class TalkingGuy extends Component {
           say: (...args) => {
             const guy = this.guy
             guy && guy.say(...args)
+          },
+
+          'magic!': () => {
+            this.guy && this.guy.doMagic()
           }
         }}
       >
