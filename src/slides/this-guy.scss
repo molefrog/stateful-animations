@@ -1,0 +1,30 @@
+
+.guy__img {
+  cursor: pointer;
+  position: relative;
+
+  width: 70px;
+  height: 110px;
+
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: bottom;
+  background-image: url('/images/guys/alex.svg');
+}
+
+.guy__dialog {
+  position: absolute;
+  bottom: 85%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.guy__dialog-text {
+  background-color: black;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 3px;
+  font-size: 16px;
+  text-align: center;
+  font-family: Rubik, sans-serif;
+}

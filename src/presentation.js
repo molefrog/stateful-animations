@@ -8,6 +8,7 @@ import TransistorSlide from 'slides/transistor'
 import { CloudPollSlide, PollsSlide, BubblePollSlide } from 'slides/poll-slides'
 import HooksSlide from 'slides/hooks-slides'
 import MotionGhostSlide from 'slides/motion-ghost-slide'
+import { TalkingHeads, InternationalHeads } from 'slides/talking-heads-slide'
 
 const DirtyAnimations = (props) =>
   <Presentation name='Грязные анимации в мире состояний'>
@@ -16,12 +17,6 @@ const DirtyAnimations = (props) =>
     </TextSlide>
 
     <Slide name='О докладчике' image='/images/alyosha.png' />
-    <TextSlide
-      overlay={0.2}
-      name='В Ростове есть клевые ребята Code Hipsters' image='/images/es6.gif'
-      subText='сообщество программистов и цифровых дизайнеров из Ростова'>
-      Code Hipsters
-    </TextSlide>
 
     <TextSlide overlay={0.2}
       name='React — Automatic View Library' image='/images/react.gif'
@@ -59,6 +54,10 @@ const DirtyAnimations = (props) =>
       name='React Motion использует requestAnimationFrame.
       Позволяет задавать пружинные анимации декларативно.' motionEnabled />
 
+    <MotionGhostSlide
+      name='Как React Motion работает с состояниями.'
+      centered />
+
     <TextSlide overlay={0.2}
       name='React Lifecycle Hooks'
       image='/images/old-dance-1.gif'
@@ -79,6 +78,16 @@ const DirtyAnimations = (props) =>
     <BubblePollSlide name='Перехват ответственности на примере' />
 
     <PollsSlide name='Правильно построенные «грязные компоненты» удобно тестировать' />
+
+    <Slide
+      name='Redux Actuator позволяет слать события компонентам через Redux store'>
+      <TalkingHeads />
+    </Slide>
+
+    <Slide
+      name='Redux Actuator поддерживает механизм каналов'>
+      <InternationalHeads />
+    </Slide>
 
     <Slide name='Резюме и ресурсы' image='/images/resources.jpg' />
 
