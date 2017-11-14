@@ -14,8 +14,15 @@
     }
   },
   "plugins": ["react", "prettier", "jest"],
-  "extends": ["plugin:react/recommended", "prettier", "prettier/react"],
+  "extends": [
+    "standard",
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/flowtype",
+    "prettier/react"
+  ],
   "rules": {
+    "react/prop-types": "off",
     "prettier/prettier": [
       "error",
       {
