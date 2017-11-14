@@ -1,18 +1,24 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 
 import { Slide } from 'otts'
-import Timeline from './timeline'
+import colors from 'colors'
+import TimelineWithMeter from './timeline-with-meter'
 
 // default discrete step
 const step = 0.025
 
 // sin func but gets from 0 to 1
-const timingFunc = t => 0.5 + 0.4 * Math.sin(6 * t)
+const timingFunc = t => 0.5 + 0.3 * Math.sin(6 * t)
 
 class RafSlide extends Component {
   constructor() {
     super()
     this.state = { currentTime: 0.0 }
+  }
+
+  static defaultProps = {
+    comparedMethod: 'naive'
   }
 
   handleCursorChange = cursor => {
@@ -35,8 +41,8 @@ class RafSlide extends Component {
 
       while (x <= 1.0) {
         // carefuly crafted params
-        const maxDeviation = 0.03
-        const startFrom = 0.15
+        const maxDeviation = 0.09
+        const startFrom = 0.05
 
         buffer.push([x, delay / maxDeviation])
 
@@ -71,20 +77,106 @@ class RafSlide extends Component {
 
     // Common props for all timelines
     const timelineProps = {
-      width: 320,
-      height: 300,
+      size: 360,
       onCursorMove: this.handleCursorChange,
       time: this.state.currentTime
     }
 
+    const comparedMethod = this.props.comparedMethod
+
     return (
-      <Slide {...this.props} extraClass="hooks-slide">
-        <Timeline points={idealGraph} {...timelineProps} />
-        <Timeline points={rafGraph} {...timelineProps} />
-        <Timeline points={timeoutGraph} {...timelineProps} />
-      </Slide>
+      <SlideLayout {...this.props} extraClass="hooks-slide">
+        <SlideContent>
+          <AnimationMethod>
+            <TimelineWithMeter
+              points={idealGraph}
+              skin="sun"
+              {...timelineProps}
+            />
+
+            <AnimationDetails>
+              <AnimationHeader>Идеальная анимация</AnimationHeader>
+              <AnimationText>
+                Плавная, работает через равные промежутки времени
+              </AnimationText>
+            </AnimationDetails>
+          </AnimationMethod>
+
+          {comparedMethod === 'raf' && (
+            <AnimationMethod>
+              <TimelineWithMeter
+                points={rafGraph}
+                skin="sun"
+                {...timelineProps}
+              />
+
+              <AnimationDetails>
+                <AnimationHeader>Адаптивный метод</AnimationHeader>
+                <AnimationText>
+                  Учитываем разницу во времени. Не плавно, но успеваем вовремя!
+                </AnimationText>
+              </AnimationDetails>
+            </AnimationMethod>
+          )}
+          {comparedMethod === 'naive' && (
+            <AnimationMethod>
+              <TimelineWithMeter
+                points={timeoutGraph}
+                skin="moon"
+                {...timelineProps}
+              />
+
+              <AnimationDetails>
+                <AnimationHeader>Наивный метод</AnimationHeader>
+                <AnimationText>
+                  Забыли, что шаг переменный = анимация «тормозит»
+                </AnimationText>
+              </AnimationDetails>
+            </AnimationMethod>
+          )}
+        </SlideContent>
+      </SlideLayout>
     )
   }
 }
+
+/*
+ * Styling and stuff
+ */
+
+const SlideLayout = styled(Slide)`
+  display: flex;
+  align-items: center;
+`
+
+const SlideContent = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+`
+
+const AnimationMethod = styled.div`
+  margin: 0 30px;
+  text-align: center;
+`
+
+const AnimationDetails = styled.div`
+  padding: 0 40px;
+`
+
+const AnimationText = styled.div`
+  font-size: 20px;
+  color: ${colors.textGray};
+  max-width: 340px;
+  margin: 0 auto;
+  line-height: 1.4;
+`
+
+const AnimationHeader = styled.div`
+  font-size: 24px;
+  margin-top: 18px;
+  margin-bottom: 12px;
+`
 
 export default RafSlide
