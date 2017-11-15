@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900px" height="600px" viewBox="0 0 900 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.1 (44463) - http://www.bohemiancoding.com/sketch -->
+    <title>Desktop Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="28" font-family="Rubik-Regular, Rubik" line-spacing="38" font-weight="normal">
+        <g id="Desktop-Copy" fill="#030303">
+            <text id="Будем-рассматривать">
+                <tspan x="255.526" y="257">Будем рассматривать</tspan>
+                <tspan x="551.514" y="257" font-family="Rubik-Medium, Rubik" font-weight="400"> React,</tspan>
+                <tspan x="250.976" y="295">но подход применим к любой </tspan>
+                <tspan x="302.664" y="333" font-family="Rubik-Italic, Rubik" font-style="italic">Automatic View Libary</tspan>
+                <tspan x="597.336" y="333" font-family="Rubik-Medium, Rubik" font-weight="400"></tspan>
+            </text>
+        </g>
+    </g>
+</svg>
