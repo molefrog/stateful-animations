@@ -1,6 +1,16 @@
 /* eslint-disable react/no-find-dom-node */
 import React, { Component } from 'react'
 
+const animationStates = {
+  IDLE: 'IDLE',
+  ENTERING: 'ENTERING',
+  ENTERED: 'ENTERED',
+  EXITING: 'EXITING',
+  EXITED: 'EXITED'
+}
+
+const st = animationStates
+
 class Animated extends Component {
   constructor(props) {
     super(props)
@@ -8,11 +18,14 @@ class Animated extends Component {
     this._anims = []
 
     this.state = {
-      lastChildren: props.children,
-      renderGhost: false
+      ghostChildren: props.children,
+      animationState: st.EXITED
     }
   }
 
+  // Dummiest animation manager ever.
+  // Simply saves animation handles and cancels
+  // them all on demand.
   registerAnimation(descriptor) {
     descriptor && this._anims.push(descriptor)
   }
@@ -26,51 +39,107 @@ class Animated extends Component {
     this.cancelAllAnimations()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.children && this.props.children) {
-      this.setState({
-        lastChildren: this.props.children,
-        renderGhost: true
-      })
+  transitionState(transitionTo, options = {}) {
+    const transitionFrom = this.state.animationState
 
-      if (this.$content && this.$content.animateExit) {
-        this.cancelAllAnimations()
-        this.registerAnimation(this.$content.animateExit())
-      }
+    // Do nothing
+    if (transitionFrom === transitionTo) {
+      return
     }
 
-    if (nextProps.children && !this.props.children) {
-      this.setState({
-        lastChildren: null,
-        renderGhost: false
+    // terminal states
+    if (transitionTo === st.ENTERED) {
+      return this.setState({
+        animationState: st.ENTERED
       })
+    }
 
-      if (this.$content && this.$content.animateAppear) {
-        this.cancelAllAnimations()
-        this.registerAnimation(this.$content.animateAppear())
-      }
+    if (transitionTo === st.EXITED) {
+      return this.setState({
+        animationState: st.EXITED
+      })
+    }
+
+    if (transitionTo === st.ENTERING) {
+      return this.setState(
+        {
+          animationState: st.ENTERING
+        },
+        () => {
+          this.cancelAllAnimations()
+
+          if (!this.$content || !this.$content.animateAppear) {
+            return this.transitionState(st.ENTERED)
+          }
+
+          const animation = this.$content.animateAppear()
+
+          animation.then(() => {
+            this.state.animationState !== st.EXITING &&
+              this.transitionState(st.ENTERED)
+          })
+          this.registerAnimation(animation)
+        }
+      )
+    }
+
+    if (transitionTo === st.EXITING) {
+      return this.setState(
+        {
+          animationState: st.EXITING,
+          ghostChildren: options.children
+        },
+        () => {
+          this.cancelAllAnimations()
+
+          if (!this.$content || !this.$content.animateExit) {
+            return this.transitionState(st.EXITED)
+          }
+
+          const animation = this.$content.animateExit()
+          animation.then(() => {
+            this.state.animationState !== st.ENTERING &&
+              this.transitionState(st.EXITED)
+          })
+          this.registerAnimation(animation)
+        }
+      )
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.children && !nextProps.children) {
+      return this.transitionState(st.EXITING, { children: this.props.children })
+    }
+
+    if (!this.props.children && nextProps.children) {
+      return this.transitionState(st.ENTERING)
     }
   }
 
   componentDidMount() {
-    if (this.$content && this.$content.animateAppear) {
-      this.registerAnimation(this.$content.animateAppear())
-    }
+    this.transitionState(st.ENTERING)
   }
 
-  registerElement = node => {
-    this.$content = node
-  }
+  registerElement = node => (this.$content = node)
 
   render() {
-    const { lastChildren, renderGhost } = this.state
-    const children = renderGhost ? lastChildren : this.props.children
+    const { animationState, ghostChildren } = this.state
 
-    if (!children) {
-      return false
+    // This flags shows if we have to render 'ghost'
+    // version of the children prop.
+    // Only works when exit animation is performing
+    const shouldRenderGhost = animationState === st.EXITING
+    const childrenToRender = shouldRenderGhost
+      ? ghostChildren
+      : this.props.children
+
+    // Nothing to render yet
+    if (!childrenToRender) {
+      return null
     }
 
-    return React.cloneElement(children, { ref: this.registerElement })
+    return React.cloneElement(childrenToRender, { ref: this.registerElement })
   }
 }
 

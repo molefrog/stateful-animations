@@ -22,13 +22,14 @@ class Dialog extends Component {
     const duration = slow ? 2000 : 600
 
     Velocity(node, { scale: 0.3, opacity: 0, translateY: 0 }, { duration: 0 })
-    Velocity(
+    let promise = Velocity(
       node,
       { scale: 1.0, opacity: 1 },
       { duration: duration, easing: [55, 7] }
     )
 
-    return { cancel: () => Velocity(node, 'stop') }
+    promise.cancel = () => Velocity(node, 'stop')
+    return promise
   }
 
   animateExit() {
@@ -42,7 +43,7 @@ class Dialog extends Component {
     let promise = Velocity(
       node,
       { translateY: 100, opacity: 0.0 },
-      { duration: slow ? 2000 : 1600, easing: 'easeOutExpo' }
+      { duration: slow ? 2000 : 1000, easing: 'easeOutCubic' }
     )
 
     promise.cancel = () => Velocity(node, 'stop')
