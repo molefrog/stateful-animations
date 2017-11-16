@@ -37,6 +37,7 @@ class Animated extends Component {
 
   componentWillUnmount() {
     this.cancelAllAnimations()
+    this._unmounted = true
   }
 
   transitionState(transitionTo, options = {}) {
@@ -75,8 +76,9 @@ class Animated extends Component {
           const animation = this.$content.animateAppear()
 
           animation.then(() => {
-            this.state.animationState !== st.EXITING &&
+            if (!this._unmounted && this.state.animationState !== st.EXITING) {
               this.transitionState(st.ENTERED)
+            }
           })
           this.registerAnimation(animation)
         }
@@ -98,8 +100,9 @@ class Animated extends Component {
 
           const animation = this.$content.animateExit()
           animation.then(() => {
-            this.state.animationState !== st.ENTERING &&
+            if (!this._unmounted && this.state.animationState !== st.ENTERING) {
               this.transitionState(st.EXITED)
+            }
           })
           this.registerAnimation(animation)
         }
