@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
+
+import { ThemeProvider } from 'styled-components'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 
 const KEY_CODE_LEFT = 37
 const KEY_CODE_RIGHT = 39
+
+const defaultTheme = {
+  baseFont: '"Rubik", sans-serif',
+  monoFont: "'SF Mono', 'Lucida Console', Monaco, monospace;"
+}
 
 class Presentation extends Component {
   static propTypes = {
@@ -73,36 +80,38 @@ class Presentation extends Component {
     const { showNavigation } = this.props
 
     return (
-      <div className="presentation">
-        {showNavigation && (
-          <div className="presentation__tool-bar">
-            <div className="presentation__logo">{this.props.name}</div>
+      <ThemeProvider theme={defaultTheme}>
+        <div className="presentation">
+          {showNavigation && (
+            <div className="presentation__tool-bar">
+              <div className="presentation__logo">{this.props.name}</div>
 
-            <div className="presentation__plan">
-              {slides.map((slide, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => this.setActiveSlide(idx)}
-                  className={cx('presentation__plan-item', {
-                    'presentation__plan-item--current': idx === currentSlide,
-                    'presentation__plan-item--future': idx > currentSlide
-                  })}
-                >
-                  {slide}
-                </div>
-              ))}
+              <div className="presentation__plan">
+                {slides.map((slide, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => this.setActiveSlide(idx)}
+                    className={cx('presentation__plan-item', {
+                      'presentation__plan-item--current': idx === currentSlide,
+                      'presentation__plan-item--future': idx > currentSlide
+                    })}
+                  >
+                    {slide}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="presentation__content">
+            <div className="presentation__slides">
+              {React.Children.map(this.props.children, (child, id) =>
+                React.cloneElement(child, { index: id })
+              )}
             </div>
           </div>
-        )}
-
-        <div className="presentation__content">
-          <div className="presentation__slides">
-            {React.Children.map(this.props.children, (child, id) =>
-              React.cloneElement(child, { index: id })
-            )}
-          </div>
         </div>
-      </div>
+      </ThemeProvider>
     )
   }
 }

@@ -9,7 +9,7 @@ import createEngine, { actuate, Actuator } from 'redux-actuator'
 // Local components
 import ThisGuy from './this-guy'
 import ActionLogger from './action-logger'
-import Button from 'ui/button'
+import { Button } from 'otts/blocks'
 
 import './talking-heads.scss'
 
@@ -26,7 +26,7 @@ const configureStore = () => {
 // Normally the Actuator is placed inside the component, but
 // I wanted to isolate the component from Redux-related logic
 class TalkingGuy extends Component {
-  render () {
+  render() {
     const { channel = 'default', ...restProps } = this.props
 
     return (
@@ -43,7 +43,12 @@ class TalkingGuy extends Component {
           }
         }}
       >
-        <ThisGuy ref={g => { this.guy = g }} {...restProps} />
+        <ThisGuy
+          ref={g => {
+            this.guy = g
+          }}
+          {...restProps}
+        />
       </Actuator>
     )
   }
@@ -61,18 +66,9 @@ const officePhrases = [
 ]
 
 const internationalPhrases = {
-  jose: [
-    '¡Hóla!',
-    'Cómo estás?',
-    'Puedes repetirlo?',
-    'Lo siento, pero...'
-  ],
+  jose: ['¡Hóla!', 'Cómo estás?', 'Puedes repetirlo?', 'Lo siento, pero...'],
 
-  gustav: [
-    'Goeden avond!',
-    'Goeiedag!',
-    'Dank u wel'
-  ],
+  gustav: ['Goeden avond!', 'Goeiedag!', 'Dank u wel'],
 
   pierrot: [
     'Quoi de neuf?',
@@ -83,62 +79,57 @@ const internationalPhrases = {
     'Comment ça va?'
   ],
 
-  avram: [
-    'Tzohorayim Tovim',
-    'Lilah Tov',
-    'Shabbat Shalom',
-    'Shavua Tov'
-  ]
+  avram: ['Tzohorayim Tovim', 'Lilah Tov', 'Shabbat Shalom', 'Shavua Tov']
 }
 
 // First demo. One guy talking on demand.
 // Only one Actuator channel
 class TalkingHeads extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {}
     this.store = configureStore()
   }
 
-  saySomething () {
+  saySomething() {
     const phrase = _.sample(officePhrases)
     const actuatorAction = actuate('default', 'say', phrase)
 
     this.store.dispatch(actuatorAction)
-    this.store.dispatch(actuate('logger', 'log', {
-      channel: actuatorAction.payload.channel,
-      ...actuatorAction.payload.event
-    }))
+    this.store.dispatch(
+      actuate('logger', 'log', {
+        channel: actuatorAction.payload.channel,
+        ...actuatorAction.payload.event
+      })
+    )
   }
 
-  doMagic () {
+  doMagic() {
     const actuatorAction = actuate('default', 'magic!')
 
     this.store.dispatch(actuatorAction)
-    this.store.dispatch(actuate('logger', 'log', {
-      channel: actuatorAction.payload.channel,
-      ...actuatorAction.payload.event
-    }))
+    this.store.dispatch(
+      actuate('logger', 'log', {
+        channel: actuatorAction.payload.channel,
+        ...actuatorAction.payload.event
+      })
+    )
   }
 
-  render () {
+  render() {
     const store = this.store
 
     return (
       <Provider store={store}>
-        <div className='talking-heads'>
-          <TalkingGuy who='tikhon' channel='default' zoomFactor={1.5} />
+        <div className="talking-heads">
+          <TalkingGuy who="tikhon" channel="default" zoomFactor={1.5} />
 
-          <div className='talking-heads__controls'>
-            <Button
-              onClick={this.saySomething.bind(this)}
-              icon={'📣'}>
+          <div className="talking-heads__controls">
+            <Button onClick={this.saySomething.bind(this)} icon={'📣'}>
               {'Говорить'}
             </Button>
 
-            <Button
-              onClick={this.doMagic.bind(this)}
-              icon={'⭐️'}>
+            <Button onClick={this.doMagic.bind(this)} icon={'⭐️'}>
               {'Вжух!'}
             </Button>
           </div>
@@ -152,21 +143,23 @@ class TalkingHeads extends Component {
 
 const logActuatorAction = (store, action, color = null) => {
   store.dispatch(action)
-  store.dispatch(actuate('logger', 'log', {
-    color: color,
-    channel: action.payload.channel,
-    ...action.payload.event
-  }))
+  store.dispatch(
+    actuate('logger', 'log', {
+      color: color,
+      channel: action.payload.channel,
+      ...action.payload.event
+    })
+  )
 }
 
 class InternationalHeads extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = { gossip: false }
     this.store = configureStore()
   }
 
-  saySomething () {
+  saySomething() {
     const who = _.sample(Object.keys(internationalPhrases))
     const phrase = _.sample(internationalPhrases[who])
 
@@ -177,65 +170,65 @@ class InternationalHeads extends Component {
       avram: 'rgba(42, 213, 139, 0.2)'
     }
 
-    logActuatorAction(this.store, actuate(who, 'say', phrase),
-      colors[who])
+    logActuatorAction(this.store, actuate(who, 'say', phrase), colors[who])
 
-    this.lastTimer = setTimeout(() => this.saySomething(), 500 + Math.random() * 2000)
+    this.lastTimer = setTimeout(
+      () => this.saySomething(),
+      500 + Math.random() * 2000
+    )
   }
 
-  stopTalking () {
+  stopTalking() {
     this.setState({ gossip: false })
     this.lastTimer && clearTimeout(this.lastTimer)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.lastTimer && clearTimeout(this.lastTimer)
   }
 
-  render () {
+  render() {
     const store = this.store
     const { gossip } = this.state
 
     return (
       <Provider store={store}>
-        <div className='talking-heads'>
+        <div className="talking-heads">
+          <div className="talking-heads__heads">
+            <div className="talking-heads__head">
+              <TalkingGuy who="jose" channel="jose" zoomFactor={1.5} />
 
-          <div className='talking-heads__heads'>
-
-            <div className='talking-heads__head'>
-              <TalkingGuy who='jose' channel='jose' zoomFactor={1.5} />
-
-              <div className='talking-heads__head-name talking-heads__head-name--jose'>
+              <div className="talking-heads__head-name talking-heads__head-name--jose">
                 José
               </div>
             </div>
 
-            <div className='talking-heads__head'>
-              <TalkingGuy who='gustav' channel='gustav' zoomFactor={1.5} />
+            <div className="talking-heads__head">
+              <TalkingGuy who="gustav" channel="gustav" zoomFactor={1.5} />
 
-              <div className='talking-heads__head-name talking-heads__head-name--gustav'>
+              <div className="talking-heads__head-name talking-heads__head-name--gustav">
                 Gustav
               </div>
             </div>
 
-            <div className='talking-heads__head'>
-              <TalkingGuy who='pierrot' channel='pierrot' zoomFactor={1.5} />
+            <div className="talking-heads__head">
+              <TalkingGuy who="pierrot" channel="pierrot" zoomFactor={1.5} />
 
-              <div className='talking-heads__head-name talking-heads__head-name--pierrot'>
+              <div className="talking-heads__head-name talking-heads__head-name--pierrot">
                 Pierrot
               </div>
             </div>
 
-            <div className='talking-heads__head'>
-              <TalkingGuy who='avram' channel='avram' zoomFactor={1.5} />
+            <div className="talking-heads__head">
+              <TalkingGuy who="avram" channel="avram" zoomFactor={1.5} />
 
-              <div className='talking-heads__head-name talking-heads__head-name--avram'>
+              <div className="talking-heads__head-name talking-heads__head-name--avram">
                 Avram
               </div>
             </div>
           </div>
 
-          <div className='talking-heads__controls'>
+          <div className="talking-heads__controls">
             <Button
               onClick={() => {
                 if (gossip) {
@@ -246,7 +239,8 @@ class InternationalHeads extends Component {
                 }
               }}
               checked={!gossip}
-              icon={'😶'}>
+              icon={'😶'}
+            >
               {'Тихо!'}
             </Button>
           </div>

@@ -7,7 +7,7 @@ import styled from 'styled-components'
 const StyledHighlight = styled(Highlight)`
   font-family: 'SF Mono', 'Lucida Console', Monaco, monospace;
   font-size: ${props => props.fontSize}px;
-  line-height: 1.44;
+  line-height: 1.4;
 `
 
 class Code extends Component {
