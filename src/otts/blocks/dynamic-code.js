@@ -35,12 +35,18 @@ const DynamicCode = ({ children }) => <Code>{children}</Code>
 
 export class HightlightSegment extends Component {
   componentDidUpdate(prevProps) {
+    if (this.$root) {
+      return
+    }
+
     if (!this.props.pure || this.props.text !== prevProps.text) {
       this.$root.classList.add('code-preview__highlight--flash')
 
       // No good :)
       setTimeout(
-        () => this.$root.classList.remove('code-preview__highlight--flash'),
+        () =>
+          this.$root &&
+          this.$root.classList.remove('code-preview__highlight--flash'),
         100
       )
     }

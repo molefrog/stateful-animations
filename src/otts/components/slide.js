@@ -4,9 +4,6 @@ import cx from 'classnames'
 
 class Slide extends Component {
   render() {
-    const isActive = this.props.index === this.context.slide
-    if (!isActive) return null
-
     const slideStyle = {
       ...(this.props.image
         ? { backgroundImage: `url(${this.props.image})` }
@@ -28,7 +25,5 @@ class Slide extends Component {
     )
   }
 }
-
-Slide.contextTypes = { slide: PropTypes.number }
 
 export default Slide
