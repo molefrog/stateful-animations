@@ -9,7 +9,7 @@ import TimelineWithMeter from './timeline-with-meter'
 const step = 0.025
 
 // sin func but gets from 0 to 1
-const timingFunc = t => 0.5 + 0.3 * Math.sin(6 * t)
+const timingFunc = t => 0.5 + 0.3 * Math.sin(8 * t)
 
 class ComparisonSlide extends Component {
   constructor() {
@@ -113,7 +113,8 @@ class ComparisonSlide extends Component {
               <AnimationDetails>
                 <AnimationHeader>rAF + дельта</AnimationHeader>
                 <AnimationText>
-                  Учитываем разницу во времени. Не плавно, но успеваем вовремя!
+                  Учитываем разницу во времени. <b>Пропускаем кадры</b>, но
+                  успеваем!
                 </AnimationText>
               </AnimationDetails>
             </AnimationMethod>
