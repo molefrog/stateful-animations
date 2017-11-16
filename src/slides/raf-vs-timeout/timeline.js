@@ -5,7 +5,7 @@ import colors from 'colors'
 
 const interpolateDot = interpolateRgb(colors.green, colors.yellow)
 
-const Timeline = ({ time, points, onCursorMove, ...props }) => {
+const Timeline = ({ time, points, onCursorMove, width, height, ...props }) => {
   const barsCount = 10
 
   return (
@@ -22,7 +22,8 @@ const Timeline = ({ time, points, onCursorMove, ...props }) => {
 
         onCursorMove(delta)
       }}
-      {...props}
+      width={width}
+      height={height}
     >
       {barsCount &&
         Array(barsCount)
