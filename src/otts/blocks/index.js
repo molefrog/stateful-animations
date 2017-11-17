@@ -5,5 +5,14 @@ import FigureCaption from './figure-caption'
 import DynamicCode from './dynamic-code'
 import Title from './title'
 import Caption from './caption'
+import FrameBackground from './frame-background'
 
-export { Code, DynamicCode, FigureCaption, Button, Title, Caption }
+export {
+  Code,
+  DynamicCode,
+  FigureCaption,
+  Button,
+  Title,
+  Caption,
+  FrameBackground
+}

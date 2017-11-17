@@ -1,7 +1,8 @@
 import React from 'react'
 
 // Presentation pieces
-import { Presentation, Slide, TextSlide, IframeSlide } from 'otts'
+import { Presentation, Slide } from 'otts'
+import { Title, Caption, FrameBackground } from 'otts/blocks'
 
 // Interactive slides
 import TransistorSlide from 'slides/transistor'
@@ -17,59 +18,96 @@ import {
   RafDeltaSlide
 } from 'slides/raf-vs-timeout'
 
+import DialogSlide from 'slides/enter-exit'
+
 const DirtyAnimations = props => (
   <Presentation name="Грязные анимации в мире состояний">
-    <TextSlide name="Введение" image="/images/gifs/wave.gif">
-      Грязные анимации в мире состояний
-    </TextSlide>
+    {/* Введение */}
+    <Slide name="Титульный слайд" background="black" centered>
+      <Title color="white">Грязные анимации в мире состояний</Title>
+      <Caption color="white">
+        Алексей Тактаров<br />HolyJS Moscow 2017
+      </Caption>
+    </Slide>
 
-    <Slide name="О докладчике" image="/images/about-author.png" />
+    <Slide backgroundImage="/images/vitruvius-pitch.png" />
+    <Slide backgroundImage="/images/vitruvius-book.png" />
+    <Slide backgroundImage="/images/vitruvius-rules.png" />
+    <Slide backgroundImage="/images/rams-radio.png" />
 
-    <TextSlide
-      name="React = Automatic View Library"
-      image="/images/business.png"
+    {/* Про что доклад? */}
+    <Slide
+      name="Что рассмотрим в докладе"
+      backgroundImage="/images/talk-abstract.png"
     />
-    <TextSlide name="React = Automatic View Library" image="/images/avl.svg" />
+
+    <Slide name="О докладчике" backgroundImage="/images/about-author.png" />
+
+    {/* Производительные анимации в браузере */}
+    <Slide
+      name="Анимации: ожидание"
+      backgroundImage="/images/ideal-animation.png"
+    />
+    <Slide
+      name="requestAnimationFrame"
+      backgroundImage="/images/time-based.png"
+    />
+
+    <RafScheduleSlide name="rAF как выглядит" />
+    <TimelineComparisonSlide
+      name="Но наивная реализация некорректна"
+      comparedMethod="naive"
+    />
+    <RafTimestampSlide />
+    <RafDeltaSlide />
+    <TimelineComparisonSlide comparedMethod="raf" />
+
+    <Slide
+      name={
+        'requestAnimationFrame очень удобен ' +
+        'для произвольных сложных анимаций'
+      }
+      background={<FrameBackground src="http://theseguys.io" />}
+      clickThrough
+    />
+
+    {/* Как выглядят современные веб-приложения */}
     <Slide
       name="Состояние отображается в DOM"
-      image="/images/dom-state-1.svg"
+      backgroundImage="/images/dom-state-1.svg"
     />
     <Slide
       name="Приложение — это цепочка состояний"
-      image="/images/dom-state-2.svg"
+      backgroundImage="/images/dom-state-2.svg"
     />
     <Slide
       name="Используя подход состояний, можно путешествовать во времени"
-      image="/images/retrodux.gif"
+      backgroundImage="/images/retrodux.gif"
     />
-    <TextSlide
-      overlay={0.2}
+
+    <DialogSlide />
+
+    <Slide
       name="CSS transitions работают в 99% случаев"
-      image="/images/gifs/bean.gif"
-      subText="Подойдут для большинства задач"
+      backgroundImage="/images/gifs/bean.gif"
+      backgroundFade={0.2}
+      centered
     >
-      CSS transitions
-    </TextSlide>
+      <Title color="white">CSS transitions</Title>
+      <Caption color="white">Подойдут для большинства задач</Caption>
+    </Slide>
+
     <TransistorSlide name="CSS transitions в React — проще простого" />
-    <TextSlide
+
+    <Slide
       overlay={0.2}
       name="Time-based анимации"
       image="/images/gifs/charlie.gif"
       subText="$.animate, Velocity, anime.js etc."
     >
       Time-based animations
-    </TextSlide>
-    <Slide name="Анимации: ожидание" image="/images/ideal-animation.png" />
-    <Slide name="Анимации: реальность" image="/images/time-based.png" />
-    <RafScheduleSlide />
-    <TimelineComparisonSlide comparedMethod="naive" />
-    <RafTimestampSlide />
-    <RafDeltaSlide />
-    <TimelineComparisonSlide comparedMethod="raf" />
-    <IframeSlide
-      url="http://theseguys.io"
-      name="requestAnimationFrame очень удобен для произвольных сложных анимаций"
-    />
+    </Slide>
+
     <TransistorSlide
       name={
         'React Motion использует requestAnimationFrame. ' +
@@ -81,14 +119,14 @@ const DirtyAnimations = props => (
       name="Как React Motion работает с состояниями."
       centered
     />
-    <TextSlide
+    <Slide
       overlay={0.2}
       name="React Lifecycle Hooks"
       image="/images/gifs/old-dance-1.gif"
       subText="componentDidMount и др."
     >
       Lifecycle Hooks
-    </TextSlide>
+    </Slide>
     <Slide
       name="Паттерн #1. Анимации на «входе»"
       image="/images/hooks-code.jpg"
@@ -115,14 +153,14 @@ const DirtyAnimations = props => (
       name="Правило работает и в другую сторону"
       image="/images/state-changes.png"
     />
-    <TextSlide
+    <Slide
       overlay={0.2}
       name="Представляем Redux Actuator!"
       image="/images/gifs/robot-dance.gif"
       subText="github.com/molefrog/redux-actuator"
     >
       Redux Actuator
-    </TextSlide>
+    </Slide>
     <Slide name="Redux Actuator позволяет слать события компонентам через Redux store">
       <TalkingHeads />
     </Slide>
@@ -131,14 +169,14 @@ const DirtyAnimations = props => (
       <InternationalHeads />
     </Slide>
     <Slide name="Резюме и ресурсы" image="/images/resources.jpg" />
-    <TextSlide
+    <Slide
       overlay={0.2}
       name="Конец"
       image="/images/gifs/old-dance-2.gif"
       subText="Анимируйте на здоровье"
     >
       Спасибо
-    </TextSlide>
+    </Slide>
   </Presentation>
 )
 
