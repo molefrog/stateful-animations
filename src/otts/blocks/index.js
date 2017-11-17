@@ -3,7 +3,7 @@ import Code from './code'
 import Button from './button'
 import FigureCaption from './figure-caption'
 import DynamicCode from './dynamic-code'
+import Title from './title'
+import Caption from './caption'
 
-import { TextSlide, IframeSlide } from './text-slide'
-
-export { Code, DynamicCode, FigureCaption, TextSlide, IframeSlide, Button }
+export { Code, DynamicCode, FigureCaption, Button, Title, Caption }
