@@ -26,7 +26,8 @@ class Slide extends Component {
       backElement = <SlideBackground background={background} />
     }
 
-    if (background && typeof background === 'function') {
+    console.log(background)
+    if (background && typeof background === 'object') {
       backElement = <SlideBackground>{background}</SlideBackground>
     }
 
@@ -36,6 +37,7 @@ class Slide extends Component {
 
         <SlideContent
           className={cx(this.props.extraClass, this.props.className)}
+          clickThrough={this.props.clickThrough}
           centered={this.props.centered}
           fade={this.props.backgroundFade}
         >
@@ -89,9 +91,9 @@ const SlideContent = styled.div`
   height: 100%;
   overflow: hidden;
 
-  ${props =>
-    props.centered &&
-    `
+  ${props => props.clickThrough && 'pointer-events: none;'} ${props =>
+      props.centered &&
+      `
       display: flex;
       flex-flow: column nowrap;
       justify-content: center;
