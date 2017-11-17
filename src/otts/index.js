@@ -1,5 +1,3 @@
-import './presentation.scss'
-
 import Presentation from './components/presentation'
 import Slide from './components/slide'
 

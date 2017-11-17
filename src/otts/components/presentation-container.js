@@ -85,8 +85,14 @@ class Presentation extends Component {
 }
 
 const PresentationLayout = styled.div`
+  font-family: ${props => props.theme.baseFont};
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   background-color: ${props => props.theme.backgroundColor};
-  flex-grow: 1;
+  color: ${props => props.theme.textColor};
+  height: 100vh;
 
   display: flex;
   flex-flow: row;
