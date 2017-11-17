@@ -35,7 +35,7 @@ const DynamicCode = ({ children }) => <Code>{children}</Code>
 
 export class HightlightSegment extends Component {
   componentDidUpdate(prevProps) {
-    if (this.$root) {
+    if (!this.$root) {
       return
     }
 
