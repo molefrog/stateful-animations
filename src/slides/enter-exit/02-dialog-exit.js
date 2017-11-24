@@ -59,7 +59,9 @@ class Dialog extends Component {
 class DialogExit extends Component {
   render() {
     return (
-      <Animated>{this.props.active && <Dialog {...this.props} />}</Animated>
+      <Animated onAnimationState={this.props.onAnimationState}>
+        {this.props.active && <Dialog {...this.props} />}
+      </Animated>
     )
   }
 }

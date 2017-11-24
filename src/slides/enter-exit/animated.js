@@ -40,6 +40,16 @@ class Animated extends Component {
     this._unmounted = true
   }
 
+  changeAnimationState(state, cb) {
+    const stateName = state.animationState
+
+    if (stateName) {
+      this.props.onAnimationState(stateName)
+    }
+
+    return this.setState(state, cb)
+  }
+
   transitionState(transitionTo, options = {}) {
     const transitionFrom = this.state.animationState
 
@@ -50,19 +60,19 @@ class Animated extends Component {
 
     // terminal states
     if (transitionTo === st.ENTERED) {
-      return this.setState({
+      return this.changeAnimationState({
         animationState: st.ENTERED
       })
     }
 
     if (transitionTo === st.EXITED) {
-      return this.setState({
+      return this.changeAnimationState({
         animationState: st.EXITED
       })
     }
 
     if (transitionTo === st.ENTERING) {
-      return this.setState(
+      return this.changeAnimationState(
         {
           animationState: st.ENTERING
         },
@@ -86,7 +96,7 @@ class Animated extends Component {
     }
 
     if (transitionTo === st.EXITING) {
-      return this.setState(
+      return this.changeAnimationState(
         {
           animationState: st.EXITING,
           ghostChildren: options.children
