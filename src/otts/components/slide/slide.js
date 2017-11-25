@@ -26,7 +26,6 @@ class Slide extends Component {
       backElement = <SlideBackground background={background} />
     }
 
-    console.log(background)
     if (background && typeof background === 'object') {
       backElement = <SlideBackground>{background}</SlideBackground>
     }

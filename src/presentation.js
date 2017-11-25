@@ -2,12 +2,17 @@ import React from 'react'
 
 // Presentation pieces
 import { Presentation, Slide } from 'otts'
-import { Title, Caption, FrameBackground } from 'otts/blocks'
+import {
+  Title,
+  Caption,
+  FrameBackground,
+  Code,
+  FigureCaption
+} from 'otts/blocks'
 
 // Interactive slides
 import TransistorSlide from 'slides/transistor'
 import { CloudPollSlide, PollsSlide, BubblePollSlide } from 'slides/poll-slides'
-import HooksSlide from 'slides/hooks-slides'
 import MotionGhostSlide from 'slides/motion-ghost-slide'
 import { TalkingHeads, InternationalHeads } from 'slides/talking-heads-slide'
 
@@ -17,6 +22,11 @@ import {
   RafTimestampSlide,
   RafDeltaSlide
 } from 'slides/raf-vs-timeout'
+
+import {
+  CssTransitionCodeSlide,
+  ReactMotionCodeSlide
+} from 'slides/transitions'
 
 import DialogSlide from 'slides/enter-exit'
 
@@ -34,6 +44,11 @@ const DirtyAnimations = props => (
     <Slide backgroundImage="/images/vitruvius-book.png" />
     <Slide backgroundImage="/images/vitruvius-rules.png" />
     <Slide backgroundImage="/images/rams-radio.png" />
+    <Slide
+      backgroundImage="/images/gifs/apps.gif"
+      backgroundFade={0.2}
+      centered
+    />
 
     {/* Про что доклад? */}
     <Slide
@@ -85,8 +100,7 @@ const DirtyAnimations = props => (
       backgroundImage="/images/retrodux.gif"
     />
 
-    <DialogSlide />
-
+    {/* Анимации переходов состояний */}
     <Slide
       name="CSS transitions работают в 99% случаев"
       backgroundImage="/images/gifs/bean.gif"
@@ -97,16 +111,9 @@ const DirtyAnimations = props => (
       <Caption color="white">Подойдут для большинства задач</Caption>
     </Slide>
 
-    <TransistorSlide name="CSS transitions в React — проще простого" />
+    <CssTransitionCodeSlide name="Как работать с CSS transitions в React" />
 
-    <Slide
-      overlay={0.2}
-      name="Time-based анимации"
-      image="/images/gifs/charlie.gif"
-      subText="$.animate, Velocity, anime.js etc."
-    >
-      Time-based animations
-    </Slide>
+    <TransistorSlide name="CSS transitions в React — демо" />
 
     <TransistorSlide
       name={
@@ -115,68 +122,173 @@ const DirtyAnimations = props => (
       }
       motionEnabled
     />
+    <ReactMotionCodeSlide />
+
     <MotionGhostSlide
       name="Как React Motion работает с состояниями."
       centered
     />
+
+    <Slide backgroundImage="/images/react-motions-cons.png" />
+
+    {/* Делаем кастомную анимацию на примере */}
     <Slide
-      overlay={0.2}
+      backgroundFade={0.4}
+      centered
       name="React Lifecycle Hooks"
-      image="/images/gifs/old-dance-1.gif"
-      subText="componentDidMount и др."
+      backgroundImage="/images/gifs/factory.gif"
     >
-      Lifecycle Hooks
+      <Title color="white">Как делать «грязные» анимации</Title>
+      <Caption color="white">На примере диалогового окна</Caption>
     </Slide>
-    <Slide
-      name="Паттерн #1. Анимации на «входе»"
-      image="/images/hooks-code.jpg"
-    />
-    <HooksSlide name="Проблемы с выходом" />
-    <Slide
-      name="Паттерн #2. Change Detection"
-      image="/images/hooks-code-2.jpg"
-    />
+
+    <Slide centered>
+      <Code>{`
+class Dialog extends Component {
+  componentDidMount() {
+    const node = findDOMNode(this)
+
+    // Or $.animate, anime.js, GSAP, D3 ...
+    Velocity(node, { scale: 1.5 },
+      { duration: 1000 })
+  }
+
+  render() { ... }
+}`}</Code>
+      <FigureCaption>
+        Паттерн <b>«анимация на входе»</b> работает через хук{' '}
+        <code>componentDidMount</code> и прямой доступ к элементу.
+      </FigureCaption>
+    </Slide>
+
+    <Slide centered>
+      <Code>{`class Dialog extends Component {
+  componentDidMount() {
+    const node = findDOMNode(this)
+
+    // animate returns a cancellable
+    // Promise-like object
+    this._anim = animate(node, { ... })
+  }
+
+  componentWillUnmount() {
+    this._anim && this._anim.cancel()
+  }
+}`}</Code>
+      <FigureCaption>
+        Компонент может быть извлечен до того, как анимация закончится.
+      </FigureCaption>
+    </Slide>
+
+    <DialogSlide example="enter" />
+
+    <Slide centered>
+      <Code>{`
+<div>
+  {this.state.showDialog && <Dialog />}
+</div>
+`}</Code>
+      <FigureCaption>
+        Проблемы с анимацией выхода — компонент уже извлечен из DOM.
+      </FigureCaption>
+    </Slide>
+
+    <Slide backgroundImage="/images/state-map.png" />
+
+    <Slide centered>
+      <Code>{`
+<Animated>
+  {this.state.showDialog && <Dialog />}
+</Animated>
+`}</Code>
+      <FigureCaption>
+        Компонент-хелпер Animated с поддержкой анимаций выхода.
+      </FigureCaption>
+    </Slide>
+
+    <Slide centered>
+      <Code fontSize={22}>{`const element = <Dialog size="medium" />
+
+// => { type: Dialog, props: { size: 'medium' }, ... }
+const element = React.createElement(Dialog, { size: 'medium' })`}</Code>
+
+      <FigureCaption>Что скрывается за JSX?</FigureCaption>
+    </Slide>
+
+    <Slide backgroundImage="/images/dan-article.png" />
+
+    <Slide centered>
+      <Code>{`
+  componentWillReceiveProps(nextProps) {
+    // Exit transition
+    if (this.props.children && !nextProps.children) {
+      return this.transitionState(st.EXITING,
+        { children: this.props.children })
+    }
+
+    // Enter transition
+    if (!this.props.children && nextProps.children) {
+      return this.transitionState(st.ENTERING)
+    }
+  }
+`}</Code>
+      <FigureCaption>
+        Компонент-хелпер Animated с поддержкой анимаций выхода.
+      </FigureCaption>
+    </Slide>
+
+    <DialogSlide example="exit" />
+
     <CloudPollSlide name="Паттерн Change Detection на примере" />
-    <Slide
-      name="Паттерн #3. Перехват ответственности"
-      image="/images/hooks-code-3.jpg"
-    />
+
+    <Slide centered>
+      <Code fontSize={20}>{`render() {
+  return <canvas />
+}
+
+// Render only once!
+shouldComponentUpdate() { return false }
+
+componentWillReceiveProps(nextProps) {
+  if (this.props.color != nextProps.color) {
+    // Animate on canvas...
+  }
+}`}</Code>
+      <FigureCaption>
+        С помощью хуков можно полностью <b>перехватить ответственность</b> за
+        рендер. Например, для работы с <code>Canvas</code>, <code>WebGL</code>,{' '}
+        <code>WebAudio</code> и т.д.
+      </FigureCaption>
+    </Slide>
+
     <BubblePollSlide name="Перехват ответственности на примере" />
     <PollsSlide
       name={'Правильно построенные «грязные компоненты» удобно тестировать'}
     />
+
+    {/* Золотое правило и о запуске презентаций */}
     <Slide
       name="Золотое правило для грязных анимаций"
-      image="/images/golden-rule.png"
+      backgroundImage="/images/golden-rule.png"
     />
     <Slide
       name="Правило работает и в другую сторону"
-      image="/images/state-changes.png"
+      backgroundImage="/images/state-changes.png"
     />
-    <Slide
-      overlay={0.2}
-      name="Представляем Redux Actuator!"
-      image="/images/gifs/robot-dance.gif"
-      subText="github.com/molefrog/redux-actuator"
-    >
-      Redux Actuator
-    </Slide>
+
+    <Slide backgroundImage="/images/demo-wip.png" />
+
     <Slide name="Redux Actuator позволяет слать события компонентам через Redux store">
       <TalkingHeads />
     </Slide>
-    <Slide name="Актуатор в действии" image="/images/actuator-code.jpg" />
+    <Slide
+      name="Актуатор в действии"
+      backgroundImage="/images/actuator-code.jpg"
+    />
     <Slide name="Redux Actuator поддерживает механизм каналов">
       <InternationalHeads />
     </Slide>
-    <Slide name="Резюме и ресурсы" image="/images/resources.jpg" />
-    <Slide
-      overlay={0.2}
-      name="Конец"
-      image="/images/gifs/old-dance-2.gif"
-      subText="Анимируйте на здоровье"
-    >
-      Спасибо
-    </Slide>
+    <Slide name="Резюме и ресурсы" />
   </Presentation>
 )
 
