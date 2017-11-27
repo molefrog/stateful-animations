@@ -2,13 +2,17 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeProvider } from 'styled-components'
 
-import Navigation from './navigation'
 import RemoteControl from './remote-control'
-
-import Controls from './controls'
+import FullscreenMode from './fullscreen-mode'
+import SlideshowMode from './slideshow-mode'
 
 // default theme for styled components
 import defaultTheme from '../theme'
+
+const modes = {
+  FULLSCREEN: 'FULLSCREEN',
+  SLIDESHOW: 'SLIDESHOW'
+}
 
 // Gets the current slide index from
 // the url hash e.g. /#10
@@ -19,11 +23,11 @@ const extractIndexFromLocation = () => {
 
 class Presentation extends Component {
   static propTypes = {
-    showNavigation: PropTypes.bool
+    name: PropTypes.string
   }
 
   static defaultProps = {
-    showNavigation: false
+    name: 'An awesome presentation'
   }
 
   constructor(props) {
@@ -37,86 +41,90 @@ class Presentation extends Component {
     this.state = {
       slides: props.slides,
       presentationName: props.name,
-      showNavigation: props.showNavigation,
-      currentSlideIndex: currentIndex
+      presentMode: modes.SLIDESHOW,
+      currentSlide: currentIndex
     }
   }
 
   shiftSlide = shift => {
-    const { slides, currentSlideIndex } = this.state
+    const { slides, currentSlide } = this.state
 
-    const id = currentSlideIndex + shift
+    const id = currentSlide + shift
     const limited = Math.max(0, Math.min(id, slides.length - 1))
 
-    this.setActiveSlide(limited)
+    this.switchSlide(limited)
   }
 
-  setActiveSlide(id) {
+  switchSlide = id => {
     window.location.hash = id.toString()
-    this.setState({ currentSlideIndex: id })
+    this.setState({ currentSlide: id })
+  }
+
+  toggleFullscreen = () => {
+    this.setState(state => ({
+      presentMode:
+        state.presentMode === modes.FULLSCREEN
+          ? modes.SLIDESHOW
+          : modes.FULLSCREEN
+    }))
+  }
+
+  getConnectedState() {
+    const { slides, currentSlide, presentMode } = this.state
+
+    return {
+      ...this.state,
+
+      slide: {
+        ...slides[currentSlide],
+        id: currentSlide,
+        index: currentSlide,
+        isFirst: currentSlide <= 0,
+        isLast: currentSlide >= slides.length - 1
+      },
+
+      isSlideshow: presentMode === modes.SLIDESHOW,
+      isFullscreen: presentMode === modes.FULLSCREEN,
+      toggleFullscreen: this.toggleFullscreen,
+
+      switchSlide: this.switchSlide,
+      showNextSlide: () => this.shiftSlide(+1),
+      showPrevSlide: () => this.shiftSlide(-1)
+    }
   }
 
   render() {
-    const { slides, currentSlideIndex, showNavigation } = this.state
-
-    const currentSlide = slides[currentSlideIndex]
+    const state = this.getConnectedState()
 
     return (
       <ThemeProvider theme={defaultTheme}>
-        <PresentationLayout>
-          <RemoteControl onMove={step => this.shiftSlide(step)} />
+        <GlobalContainer>
+          <RemoteControl
+            onNext={state.showNextSlide}
+            onPrev={state.showPrevSlide}
+            onMute={() => null}
+          />
 
-          {showNavigation && (
-            <Navigation
-              {...this.state}
-              onSelectSlide={index => this.setActiveSlide(index)}
-            />
-          )}
-
-          <PresentationContent>
-            <div>
-              {React.cloneElement(currentSlide.element, {
-                key: currentSlideIndex
-              })}
-
-              <Controls
-                slidesCount={slides.length}
-                currentSlide={currentSlideIndex}
-                onMoveSlide={this.shiftSlide}
-              />
-            </div>
-          </PresentationContent>
-        </PresentationLayout>
+          {state.isFullscreen && <FullscreenMode {...state} />}
+          {state.isSlideshow && <SlideshowMode {...state} />}
+        </GlobalContainer>
       </ThemeProvider>
     )
   }
 }
 
-const PresentationLayout = styled.div`
-  font-family: ${props => props.theme.baseFont};
+const GlobalContainer = styled.div`
+  /* Fit the whole browser window */
+  width: 100vw;
+  height: 100vh;
 
+  /* Setup typography */
+  font-family: ${props => props.theme.baseFont};
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   background-color: ${props => props.theme.backgroundColor};
   color: ${props => props.theme.textColor};
-  height: 100vh;
-
-  display: flex;
-  flex-flow: row;
-  flex-wrap: nowrap;
-`
-
-const PresentationContent = styled.div`
-  padding: 32px;
-  flex-grow: 1;
-  overflow-y: auto;
-  align-self: stretch;
-
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: flex-start;
-  justify-content: center;
 `
 
 export default Presentation

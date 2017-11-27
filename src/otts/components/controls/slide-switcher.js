@@ -9,23 +9,29 @@ import MiniProgress from './mini-progress'
 
 class SlideSwitcher extends React.Component {
   render() {
-    const { className, currentSlide, slidesCount } = this.props
+    const {
+      className,
+      slide,
+      slides,
+      showNextSlide,
+      showPrevSlide
+    } = this.props
 
     return (
       <ControlGroup className={className}>
         <ControlButton
-          onClick={() => this.props.onMoveSlide(-1)}
-          disabled={currentSlide <= 0}
+          onClick={() => showPrevSlide()}
+          disabled={slide.isFirst}
           activeIconTransform="translateX(-1px)"
         >
           <LeftArrow />
         </ControlButton>
 
-        <CurrentSlide current={currentSlide} total={slidesCount} />
+        <CurrentSlide current={slide.index} total={slides.length} />
 
         <ControlButton
-          onClick={() => this.props.onMoveSlide(1)}
-          disabled={currentSlide >= slidesCount - 1}
+          onClick={() => showNextSlide()}
+          disabled={slide.isLast}
           activeIconTransform="translateX(1px)"
         >
           <RightArrow />

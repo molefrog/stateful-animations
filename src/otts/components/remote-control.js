@@ -25,12 +25,12 @@ const k = {
 
 class RemoteControl extends React.Component {
   static propTypes = {
-    onMove: PropTypes.func.isRequired
+    onNext: PropTypes.func.isRequired,
+    onPrev: PropTypes.func.isRequired,
+    onMute: PropTypes.func.isRequired
   }
 
   handleKeyDown = e => {
-    const onMoveSlide = this.props.onMove
-
     // Go to the next slide: right,
     // down arrow or space
     if (
@@ -38,12 +38,16 @@ class RemoteControl extends React.Component {
       e.keyCode === k.KEY_DOWN ||
       e.keyCode === k.KEY_SPACE
     ) {
-      return onMoveSlide(1)
+      return this.props.onNext()
     }
 
     // Go to previous slide
     if (e.keyCode === k.KEY_LEFT || e.keyCode === k.KEY_UP) {
-      return onMoveSlide(-1)
+      return this.props.onPrev()
+    }
+
+    if (e.keyCode === k.KEY_B) {
+      return this.props.onMute()
     }
   }
 
