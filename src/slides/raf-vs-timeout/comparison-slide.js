@@ -85,7 +85,7 @@ class ComparisonSlide extends Component {
     const comparedMethod = this.props.comparedMethod
 
     return (
-      <SlideLayout {...this.props} extraClass="hooks-slide">
+      <SlideLayout {...this.props}>
         <SlideContent>
           <AnimationMethod>
             <TimelineWithMeter
