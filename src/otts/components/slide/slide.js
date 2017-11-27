@@ -1,103 +1,110 @@
-import React, { Component } from 'react'
-import styled, { css } from 'styled-components'
-import cx from 'classnames'
+import React from 'react'
+import PropTypes from 'prop-types'
 
-class Slide extends Component {
+import styled from 'styled-components'
+
+/*
+ * The `Slide` component represents a real slide
+ * instance rendered inside the slideshow.
+ * Supports scaling (needed to fit the slide into a
+ * specific viewport).
+ */
+
+class Slide extends React.Component {
+  static propTypes = {
+    // Slide settings
+    slide: PropTypes.object.isRequired,
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+
+    defaultBackground: PropTypes.string,
+    fitInto: PropTypes.shape({
+      width: PropTypes.number,
+      height: PropTypes.number
+    })
+  }
+
   static defaultProps = {
-    width: 1066,
-    height: 600,
-    centered: false
+    defaultBackground: 'white'
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      slideBackground: null
+    }
+  }
+
+  handleBackgroundChange = background => {
+    this.setState({
+      slideBackground: background
+    })
+  }
+
+  calculateZoom() {
+    const { width, height } = this.props
+    const ft = this.props.fitInto
+
+    if (!ft) return 1.0
+
+    const fitAspect = width / height
+
+    // These magic values help to handle edge cases:
+    // when either width or height is not present.
+    let aspect = (ft.width || Infinity) / (ft.height || -0)
+
+    if (fitAspect >= aspect) {
+      return ft.width / width
+    } else {
+      return ft.height / height
+    }
   }
 
   render() {
-    const slideStyle = {
-      width: this.props.width,
-      height: this.props.height
-    }
+    const { width, height, slide } = this.props
+    const { slideBackground } = this.state
 
-    const { background, backgroundImage } = this.props
-    let backElement = null
+    const zoom = this.calculateZoom()
 
-    if (backgroundImage) {
-      backElement = <SlideBackground image={backgroundImage} />
-    }
-
-    if (background && typeof background === 'string') {
-      backElement = <SlideBackground background={background} />
-    }
-
-    if (background && typeof background === 'object') {
-      backElement = <SlideBackground>{background}</SlideBackground>
+    const layerProps = {
+      style: {
+        width: width,
+        height: height,
+        transform: zoom === 1.0 ? 'none' : `scale(${zoom}, ${zoom})`,
+        transformOrigin: 'top left'
+      }
     }
 
     return (
-      <SlideCard style={slideStyle}>
-        {backElement}
+      <Frame
+        className={this.props.className}
+        style={{
+          width: width * zoom,
+          height: height * zoom,
+          background: this.props.defaultBackground
+        }}
+      >
+        {slideBackground && <Layer {...layerProps}>{slideBackground}</Layer>}
 
-        <SlideContent
-          className={cx(this.props.extraClass, this.props.className)}
-          clickThrough={this.props.clickThrough}
-          centered={this.props.centered}
-          fade={this.props.backgroundFade}
-        >
-          {this.props.children}
-        </SlideContent>
-      </SlideCard>
+        <Layer {...layerProps}>
+          {React.cloneElement(slide.element, {
+            onBackgroundChange: this.handleBackgroundChange
+          })}
+        </Layer>
+      </Frame>
     )
   }
 }
 
-const SlideCard = styled.div`
+const Frame = styled.div`
   overflow: hidden;
-  box-shadow: 0px 5px 16px -2px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
   position: relative;
-  background: white;
 `
 
-const SlideBackground = styled.div`
+const Layer = styled.div`
   position: absolute;
-
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-
-  ${props =>
-    props.image &&
-    css`
-      background-image: url(${props.image});
-    `};
-
-  ${props =>
-    props.background &&
-    css`
-      background: ${props.background};
-    `};
-`
-
-const SlideContent = styled.div`
-  position: relative;
-  background: ${props => `rgba(0,0,0,${props.fade})`};
-  z-index: 2;
-
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-
-  ${props => props.clickThrough && 'pointer-events: none;'} ${props =>
-      props.centered &&
-      `
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: center;
-      align-items: center;
-    `};
 `
 
 export default Slide

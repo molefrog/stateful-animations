@@ -50,7 +50,7 @@ const PlainBackground = styled.div`
   ${props =>
     props.image &&
     `background: linear-gradient(
-      rgba(0, 0, 0, ${props.backgroundFade || 0.0}),
-      rgba(0, 0, 0, ${props.backgroundFade || 0.0})
+      rgba(0, 0, 0, ${props.fade || 0.0}),
+      rgba(0, 0, 0, ${props.fade || 0.0})
     ), url(${props.image}) center center / cover no-repeat`};
 `

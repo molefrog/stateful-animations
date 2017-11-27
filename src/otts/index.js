@@ -1,5 +1,5 @@
 import Presentation from './components/presentation'
-import Slide from './components/slide'
+import { SlideDecl as Slide } from './components/slide'
 
 // Export individual building blocks
 export * from './blocks'

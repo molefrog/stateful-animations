@@ -1,3 +1,4 @@
+import SlideDecl from './slide-decl'
 import Slide from './slide'
 
-export default Slide
+export { Slide, SlideDecl }
