@@ -23,11 +23,14 @@ const extractIndexFromLocation = () => {
 
 class Presentation extends Component {
   static propTypes = {
-    name: PropTypes.string
+    name: PropTypes.string,
+    aspectRatio: PropTypes.number
   }
 
   static defaultProps = {
-    name: 'An awesome presentation'
+    name: 'An awesome presentation',
+    aspectRatio: 16.0 / 9.0,
+    baseWidth: 1066.0
   }
 
   constructor(props) {
@@ -42,7 +45,10 @@ class Presentation extends Component {
       slides: props.slides,
       presentationName: props.name,
       presentMode: modes.SLIDESHOW,
-      currentSlide: currentIndex
+      currentSlide: currentIndex,
+
+      slideWidth: props.baseWidth,
+      slideHeight: props.baseWidth / props.aspectRatio
     }
   }
 
