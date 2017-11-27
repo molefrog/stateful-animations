@@ -6,7 +6,6 @@ import defaultColorScheme from './color-scheme'
 
 const codeFactory = Highlight => {
   const defaultLineHeight = 1.4
-  const defaultFontSize = 22
 
   // Override additional styles without
   // touching the theme object.
@@ -29,7 +28,7 @@ const codeFactory = Highlight => {
     }
 
     static defaultProps = {
-      fontSize: defaultFontSize,
+      // why not?
       language: 'javascript'
     }
 
@@ -46,8 +45,11 @@ const codeFactory = Highlight => {
     }
 
     render() {
-      const { className, fontSize, language } = this.props
+      const { className, language, theme } = this.props
       const code = this.props.children
+
+      // Use given font size or fall back to theme defaults
+      const fontSize = this.props.fontSize || theme.baseFontSize
 
       return (
         <StyledHighlight
