@@ -5,6 +5,8 @@ import styled, { ThemeProvider } from 'styled-components'
 import Navigation from './navigation'
 import RemoteControl from './remote-control'
 
+import Controls from './controls'
+
 // default theme for styled components
 import defaultTheme from '../theme'
 
@@ -40,7 +42,7 @@ class Presentation extends Component {
     }
   }
 
-  shiftSlide(shift) {
+  shiftSlide = shift => {
     const { slides, currentSlideIndex } = this.state
 
     const id = currentSlideIndex + shift
@@ -72,10 +74,16 @@ class Presentation extends Component {
           )}
 
           <PresentationContent>
-            <div className="presentation__slides">
+            <div>
               {React.cloneElement(currentSlide.element, {
                 key: currentSlideIndex
               })}
+
+              <Controls
+                slidesCount={slides.length}
+                currentSlide={currentSlideIndex}
+                onMoveSlide={this.shiftSlide}
+              />
             </div>
           </PresentationContent>
         </PresentationLayout>
