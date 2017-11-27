@@ -6,8 +6,8 @@ import { Fullscreen as FullscreenIcon } from '../../assets/icons'
 
 const FullscreenToggle = ({ className, onClick }) => (
   <ControlGroup className={className}>
-    <ControlButton>
-      <FullscreenIcon onClick={onClick} />
+    <ControlButton onClick={onClick}>
+      <FullscreenIcon />
     </ControlButton>
   </ControlGroup>
 )
