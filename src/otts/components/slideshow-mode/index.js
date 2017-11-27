@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Controls from '../controls'
+import { Slide } from '../slide'
 
 class SlideshowMode extends React.Component {
   render() {
@@ -10,9 +11,12 @@ class SlideshowMode extends React.Component {
     return (
       <Slideshow>
         <CurrentSlide>
-          {React.cloneElement(slide.element, {
-            key: slide.index
-          })}
+          <SlideCard
+            key={slide.index}
+            slide={slide}
+            width={this.props.slideWidth}
+            height={this.props.slideHeight}
+          />
         </CurrentSlide>
 
         <Footer>
@@ -22,6 +26,12 @@ class SlideshowMode extends React.Component {
     )
   }
 }
+
+const SlideCard = styled(Slide)`
+  overflow: hidden;
+  box-shadow: 0px 5px 16px -2px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+`
 
 const Slideshow = styled.div`
   padding: 28px;
