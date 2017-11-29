@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom'
 import Presentation from './presentation'
 import { injectGlobal } from 'styled-components'
 
-import 'styles/syntax-highlight.scss'
-
 injectGlobal`
   body {
     margin: 0;
