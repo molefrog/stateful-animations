@@ -4,12 +4,12 @@ import _ from 'lodash'
 // Redux swiss knife
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
-import createEngine, { actuate, Actuator } from 'redux-actuator'
+import createEngine, { actuateChannel, Actuator } from 'redux-actuator'
 
 // Local components
 import ThisGuy from './this-guy'
 import ActionLogger from './action-logger'
-import { Button } from 'otts/blocks'
+import { Button } from 'presa/blocks'
 
 import './talking-heads.scss'
 
@@ -93,11 +93,11 @@ class TalkingHeads extends Component {
 
   saySomething() {
     const phrase = _.sample(officePhrases)
-    const actuatorAction = actuate('default', 'say', phrase)
+    const actuatorAction = actuateChannel('default')('say', phrase)
 
     this.store.dispatch(actuatorAction)
     this.store.dispatch(
-      actuate('logger', 'log', {
+      actuateChannel('logger')('log', {
         channel: actuatorAction.payload.channel,
         ...actuatorAction.payload.event
       })
@@ -105,11 +105,11 @@ class TalkingHeads extends Component {
   }
 
   doMagic() {
-    const actuatorAction = actuate('default', 'magic!')
+    const actuatorAction = actuateChannel('default')('magic!')
 
     this.store.dispatch(actuatorAction)
     this.store.dispatch(
-      actuate('logger', 'log', {
+      actuateChannel('logger')('log', {
         channel: actuatorAction.payload.channel,
         ...actuatorAction.payload.event
       })
@@ -144,7 +144,7 @@ class TalkingHeads extends Component {
 const logActuatorAction = (store, action, color = null) => {
   store.dispatch(action)
   store.dispatch(
-    actuate('logger', 'log', {
+    actuateChannel('logger')('log', {
       color: color,
       channel: action.payload.channel,
       ...action.payload.event
@@ -170,7 +170,11 @@ class InternationalHeads extends Component {
       avram: 'rgba(42, 213, 139, 0.2)'
     }
 
-    logActuatorAction(this.store, actuate(who, 'say', phrase), colors[who])
+    logActuatorAction(
+      this.store,
+      actuateChannel(who)('say', phrase),
+      colors[who]
+    )
 
     this.lastTimer = setTimeout(
       () => this.saySomething(),

@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import { Slide } from 'otts'
-import { Button } from 'otts/blocks'
-import colors from 'colors'
+import { Slide } from 'presa'
+import { Button } from 'presa/blocks'
 
 import DialogEnter from './01-dialog-enter'
 import DialogExit from './02-dialog-exit'

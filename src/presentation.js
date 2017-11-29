@@ -1,14 +1,14 @@
 import React from 'react'
 
 // Presentation pieces
-import { Presentation, Slide } from 'otts'
+import { Presentation, Slide } from 'presa'
 import {
   Title,
   Caption,
   FrameBackground,
   Code,
   FigureCaption
-} from 'otts/blocks'
+} from 'presa/blocks'
 
 // Interactive slides
 import TransistorSlide from 'slides/transistor'

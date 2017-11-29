@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Slide, Code, FigureCaption } from 'otts'
+
+import { Slide } from 'presa'
+import { Code, FigureCaption } from 'presa/blocks'
 
 export class ReactMotionCodeSlide extends Component {
   render() {

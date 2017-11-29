@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Motion, spring, presets } from 'react-motion'
 
-import { Slide } from 'otts'
-import { Button, DynamicCode } from 'otts/blocks'
+import { Slide } from 'presa'
+import { Button, DynamicCode } from 'presa/blocks'
 
 import './transistor.scss'
 

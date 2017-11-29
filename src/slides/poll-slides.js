@@ -5,8 +5,8 @@ import CloudPoll from 'ficus/cloud-poll'
 import BubblePoll from 'ficus/bubble-poll'
 import ClassicPoll from 'ficus/classic-poll'
 
-import { Slide } from 'otts'
-import { Button } from 'otts/blocks'
+import { Slide } from 'presa'
+import { Button } from 'presa/blocks'
 
 import './poll-slides.scss'
 

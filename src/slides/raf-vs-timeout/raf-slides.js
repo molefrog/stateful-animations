@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Slide, Code, FigureCaption } from 'otts'
+
+import { Slide } from 'presa'
+import { FigureCaption, Code } from 'presa/blocks'
 
 // Shows how to use rAF in your code.
 export class RafScheduleSlide extends Component {

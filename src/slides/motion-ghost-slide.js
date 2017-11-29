@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Motion, TransitionMotion, spring, presets } from 'react-motion'
 
-import { Slide } from 'otts'
-import { Button } from 'otts/blocks'
+import { Slide } from 'presa'
+import { Button } from 'presa/blocks'
 
 // Utils
 const makeKey = (t, i) => `${t}-${i}`

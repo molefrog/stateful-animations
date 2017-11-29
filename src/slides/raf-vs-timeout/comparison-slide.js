@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import { Slide } from 'otts'
+import { Slide } from 'presa'
 import colors from 'colors'
 import TimelineWithMeter from './timeline-with-meter'
 
