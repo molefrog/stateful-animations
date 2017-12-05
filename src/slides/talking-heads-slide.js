@@ -9,7 +9,7 @@ import createEngine, { actuateChannel, Actuator } from 'redux-actuator'
 // Local components
 import ThisGuy from './this-guy'
 import ActionLogger from './action-logger'
-import { Button } from 'presa/blocks'
+import Button from 'blocks/button'
 
 import './talking-heads.scss'
 

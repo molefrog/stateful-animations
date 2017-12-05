@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import { Slide } from 'presa'
-import { Button } from 'presa/blocks'
+import Button from 'blocks/button'
 
 import DialogEnter from './01-dialog-enter'
 import DialogExit from './02-dialog-exit'

@@ -6,7 +6,7 @@ import BubblePoll from 'ficus/bubble-poll'
 import ClassicPoll from 'ficus/classic-poll'
 
 import { Slide } from 'presa'
-import { Button } from 'presa/blocks'
+import Button from 'blocks/button'
 
 import './poll-slides.scss'
 

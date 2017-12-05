@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 
 import { Slide } from 'presa'
-import { Code, FigureCaption } from 'presa/blocks'
+import { Code } from 'presa/blocks'
+
+import FigureCaption from 'blocks/figure-caption'
 
 export class ReactMotionCodeSlide extends Component {
   render() {

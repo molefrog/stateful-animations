@@ -16,9 +16,7 @@ const Timeline = ({ time, points, onCursorMove, width, height, ...props }) => {
       onMouseMove={event => {
         const svg = event.currentTarget
         const rect = svg.getBoundingClientRect()
-
-        const width = event.currentTarget.clientWidth
-        const delta = (event.clientX - rect.left) / width
+        const delta = (event.clientX - rect.left) / rect.width
 
         onCursorMove(delta)
       }}
