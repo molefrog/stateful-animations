@@ -3,9 +3,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 const SKINS = {
-  moon: '/images/moon-emoji.png',
-  sun: '/images/sun-emoji.png',
-  sunglasses: '/images/sunglasses-emoji.png'
+  moon: './images/moon-emoji.png',
+  sun: './images/sun-emoji.png',
+  sunglasses: './images/sunglasses-emoji.png'
 }
 
 const Meter = styled.div`

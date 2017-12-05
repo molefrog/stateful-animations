@@ -94,7 +94,7 @@ const CloseButton = styled.div`
   top: 14px;
   right: 14px;
 
-  background: url(/images/dialog-close.svg);
+  background: url(./images/dialog-close.svg);
 `
 
 export default FakeDialog

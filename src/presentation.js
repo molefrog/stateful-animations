@@ -38,7 +38,7 @@ const DirtyAnimations = props => (
     {/* Введение */}
     <Slide
       name="Титульный слайд"
-      background="/images/gifs/abstract.gif"
+      background="./images/gifs/abstract.gif"
       fade={0.5}
     >
       <Layout>
@@ -58,17 +58,17 @@ const DirtyAnimations = props => (
 
     <Slide
       name="Витрувий — один из первых архитекторов-теоретиков"
-      background="/images/vitruvius-pitch.jpg"
+      background="./images/vitruvius-pitch.jpg"
     />
     <Slide
       name="Витрувий написал труд по архитектуре"
-      background="/images/vitruvius-book.jpg"
+      background="./images/vitruvius-book.jpg"
     />
-    <Slide name="Три качества" background="/images/vitruvius-rules.png" />
-    <Slide name="Применимы везде" background="/images/rams-radio.jpg" />
+    <Slide name="Три качества" background="./images/vitruvius-rules.png" />
+    <Slide name="Применимы везде" background="./images/rams-radio.jpg" />
     <Slide
       name="В чем наша миссия?"
-      background="/images/gifs/apps.gif"
+      background="./images/gifs/apps.gif"
       fade={0.2}
       centered
     />
@@ -76,14 +76,17 @@ const DirtyAnimations = props => (
     {/* Про что доклад? */}
     <Slide
       name="Что рассмотрим в докладе"
-      background="/images/talk-abstract.png"
+      background="./images/talk-abstract.png"
     />
 
-    <Slide name="О докладчике" background="/images/about-author.png" />
+    <Slide name="О докладчике" background="./images/about-author.png" />
 
     {/* Производительные анимации в браузере */}
-    <Slide name="Анимации: ожидание" background="/images/ideal-animation.png" />
-    <Slide name="requestAnimationFrame" background="/images/time-based.png" />
+    <Slide
+      name="Анимации: ожидание"
+      background="./images/ideal-animation.png"
+    />
+    <Slide name="requestAnimationFrame" background="./images/time-based.png" />
 
     <RafScheduleSlide name="rAF как выглядит" />
     <TimelineComparisonSlide
@@ -109,21 +112,21 @@ const DirtyAnimations = props => (
     {/* Как выглядят современные веб-приложения */}
     <Slide
       name="Состояние отображается в DOM"
-      background="/images/dom-state-1.svg"
+      background="./images/dom-state-1.svg"
     />
     <Slide
       name="Приложение — это цепочка состояний"
-      background="/images/dom-state-2.svg"
+      background="./images/dom-state-2.svg"
     />
     <Slide
       name="Используя подход состояний, можно путешествовать во времени"
-      background="/images/retrodux.gif"
+      background="./images/retrodux.gif"
     />
 
     {/* Анимации переходов состояний */}
     <Slide
       name="CSS transitions работают в 99% случаев"
-      background="/images/gifs/bean.gif"
+      background="./images/gifs/bean.gif"
       fade={0.2}
       centered
     >
@@ -151,14 +154,14 @@ const DirtyAnimations = props => (
 
     <Slide
       name="React Motion не всегда подходит"
-      background="/images/react-motions-cons.png"
+      background="./images/react-motions-cons.png"
     />
 
     {/* Делаем кастомную анимацию на примере */}
     <Slide
       fade={0.4}
       centered
-      background="/images/gifs/factory.gif"
+      background="./images/gifs/factory.gif"
       name="Грязные анимации"
     >
       <Title color="white">Как делать «грязные» анимации</Title>
@@ -217,7 +220,7 @@ class Dialog extends Component {
     </Slide>
 
     <Slide name="Карта состояний" centered>
-      <img src="/images/state-map.png" width="800" />
+      <img src="./images/state-map.png" width="800" />
       <FigureCaption>
         Карта состояний компонента <code>Animated</code>
       </FigureCaption>
@@ -245,7 +248,7 @@ const element = React.createElement(Dialog, { size: 'medium' })`}</Code>
 
     <Slide
       name="Тонкости хорошо раскрыты в статье"
-      background="/images/dan-article.png"
+      background="./images/dan-article.png"
     />
 
     <Slide name="Animated — простейший автомат" centered>
@@ -302,17 +305,17 @@ componentWillReceiveProps(nextProps) {
     {/* Золотое правило и о запуске презентаций */}
     <Slide
       name="Золотое правило для грязных анимаций"
-      background="/images/golden-rule.png"
+      background="./images/golden-rule.png"
     />
     <Slide
       name="Правило работает и в другую сторону"
-      background="/images/state-changes.png"
+      background="./images/state-changes.png"
     />
 
     <Slide name="Redux Actuator позволяет слать события компонентам через Redux store">
       <TalkingHeads />
     </Slide>
-    <Slide name="Актуатор в действии" background="/images/actuator-code.jpg" />
+    <Slide name="Актуатор в действии" background="./images/actuator-code.jpg" />
     <Slide name="Redux Actuator поддерживает механизм каналов">
       <InternationalHeads />
     </Slide>
