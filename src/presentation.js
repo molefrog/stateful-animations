@@ -14,19 +14,17 @@ import TransistorSlide from 'slides/transistor'
 import { CloudPollSlide, PollsSlide, BubblePollSlide } from 'slides/poll-slides'
 import MotionGhostSlide from 'slides/motion-ghost-slide'
 import { TalkingHeads, InternationalHeads } from 'slides/talking-heads-slide'
-
+import ControlledRenderSlide from 'slides/own-render'
 import {
   TimelineComparisonSlide,
   RafScheduleSlide,
   RafTimestampSlide,
   RafDeltaSlide
 } from 'slides/raf-vs-timeout'
-
 import {
   CssTransitionCodeSlide,
   ReactMotionCodeSlide
 } from 'slides/transitions'
-
 import DialogSlide from 'slides/enter-exit'
 
 const DirtyAnimations = props => (
@@ -293,6 +291,8 @@ componentWillReceiveProps(nextProps) {
         <code>WebAudio</code> и т.д.
       </FigureCaption>
     </Slide>
+
+    <ControlledRenderSlide name="WebGL компонент" />
 
     <BubblePollSlide name="Перехват ответственности на примере" />
     <PollsSlide
