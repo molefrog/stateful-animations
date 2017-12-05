@@ -110,14 +110,19 @@ const DirtyAnimations = props => (
     />
 
     {/* Как выглядят современные веб-приложения */}
-    <Slide
-      name="Состояние отображается в DOM"
-      background="./images/dom-state-1.svg"
-    />
-    <Slide
-      name="Приложение — это цепочка состояний"
-      background="./images/dom-state-2.svg"
-    />
+    <Slide name="Состояние отображается в DOM" centered>
+      <img width="470" src="./images/immutable-map.png" />
+      <FigureCaption>
+        Immutable UI в основе современных веб-приложений. Состояние отображается
+        в DOM.
+      </FigureCaption>
+    </Slide>
+    <Slide name="Приложение — это цепочка состояний">
+      <CustomImageLayout>
+        <img width="860" src="./images/immutable-chain.png" />
+        <FigureCaption>Приложение — цепочка состояний.</FigureCaption>
+      </CustomImageLayout>
+    </Slide>
     <Slide
       name="Используя подход состояний, можно путешествовать во времени"
       background="./images/retrodux.gif"
@@ -323,6 +328,20 @@ componentWillReceiveProps(nextProps) {
 )
 
 export default DirtyAnimations
+
+const CustomImageLayout = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  > img {
+    align-self: stretch;
+  }
+`
 
 const DeckTitle = styled(Title)`
   line-height: 0.95;
