@@ -5,14 +5,11 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack --progress",
-    "deploy": "gh-pages-deploy",
-    "clean-source":
-      "rimraf public/ src/ package.json yarn.lock .babelrc .eslintrc.json .prettierrc webpack.config.js"
+    "deploy": "gh-pages-deploy"
   },
   "gh-pages-deploy": {
     "staticpath": "public",
     "prep": ["build"],
-    "post": ["clean-source"],
     "noprompt": false
   },
   "dependencies": {
