@@ -6,7 +6,8 @@
     "start": "webpack-dev-server",
     "build": "webpack --progress",
     "deploy": "gh-pages-deploy",
-    "clean-source": "rimraf images/"
+    "clean-source":
+      "rimraf public/ src/ package.json yarn.lock .babelrc .eslintrc.json .prettierrc webpack.config.js"
   },
   "gh-pages-deploy": {
     "staticpath": "public",
