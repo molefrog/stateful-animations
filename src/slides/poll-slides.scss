@@ -1,4 +1,3 @@
-
 .poll-slide,
 .poll-slide__wrap {
   display: flex;
@@ -31,6 +30,7 @@
 }
 
 .poll-slide__polls {
+  max-width: 80%;
   text-align: center;
   .poll-zoom__poll {
     margin: 4px;
