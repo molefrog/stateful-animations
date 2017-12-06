@@ -26,6 +26,7 @@ import {
   ReactMotionCodeSlide
 } from 'slides/transitions'
 import DialogSlide from 'slides/enter-exit'
+import FlipSlide from 'slides/flip'
 
 const DirtyAnimations = props => (
   <Presentation
@@ -337,6 +338,8 @@ store.dispatch(actuate('highlightUser', { id: 1 }))`}
     <Slide name="Redux Actuator демо">
       <TalkingHeads />
     </Slide>
+
+    <FlipSlide name="Анимация перехода между роутами с помощью FLIP" />
   </Presentation>
 )
 
