@@ -13,7 +13,7 @@ import Layout from 'blocks/layout'
 import TransistorSlide from 'slides/transistor'
 import { CloudPollSlide, PollsSlide, BubblePollSlide } from 'slides/poll-slides'
 import MotionGhostSlide from 'slides/motion-ghost-slide'
-import { TalkingHeads, InternationalHeads } from 'slides/talking-heads-slide'
+import { TalkingHeads } from 'slides/actuation/talking-heads'
 import ControlledRenderSlide from 'slides/own-render'
 import {
   TimelineComparisonSlide,
@@ -68,7 +68,7 @@ const DirtyAnimations = props => (
     <Slide name="Применимы везде" background="./images/rams-radio.jpg" />
     <Slide
       name="В чем наша миссия?"
-      background="./images/gifs/apps.gif"
+      background="./images/turbo.jpg"
       fade={0.2}
       centered
     />
@@ -317,12 +317,25 @@ componentWillReceiveProps(nextProps) {
       background="./images/state-changes.png"
     />
 
-    <Slide name="Redux Actuator позволяет слать события компонентам через Redux store">
-      <TalkingHeads />
+    <Slide centered name="Применяем паттерн в Redux приложениях">
+      <Code>
+        {`import { Actuator, actuate } from 'redux-actuator'
+
+// Inside the component
+<Actuator on={{ animateBadge: this.animateBadge }} />
+
+// Where the business logic is
+store.dispatch(actuate('animateBadge'))
+store.dispatch(actuate('highlightUser', { id: 1 }))`}
+      </Code>
+      <FigureCaption>
+        Паттерн удобно использовать в Redux приложениях, где глобальный стейт —
+        единственный способ коммуникации.
+      </FigureCaption>
     </Slide>
-    <Slide name="Актуатор в действии" background="./images/actuator-code.jpg" />
-    <Slide name="Redux Actuator поддерживает механизм каналов">
-      <InternationalHeads />
+
+    <Slide name="Redux Actuator демо">
+      <TalkingHeads />
     </Slide>
   </Presentation>
 )

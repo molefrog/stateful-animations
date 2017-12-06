@@ -1,9 +1,9 @@
+/* eslint-disable react/no-find-dom-node */
 import Velocity from 'velocity-animate'
 import React from 'react'
+import styled from 'styled-components'
 import { findDOMNode } from 'react-dom'
 import { Howl } from 'howler'
-
-import './this-guy.scss'
 
 class ThisGuy extends React.Component {
   constructor(props) {
@@ -23,8 +23,7 @@ class ThisGuy extends React.Component {
     const imageUrl = `url(./images/guys/${this.props.who}.svg)`
 
     return (
-      <div
-        className="guy__img"
+      <Img
         style={{
           width,
           height,
@@ -101,5 +100,34 @@ ThisGuy.defaultProps = {
   zoomFactor: 1.0,
   who: 'tikhon'
 }
+
+const Img = styled.div`
+  cursor: pointer;
+  position: relative;
+
+  width: 70px;
+  height: 110px;
+
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: bottom;
+
+  .guy__dialog {
+    position: absolute;
+    bottom: 85%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .guy__dialog-text {
+    background-color: black;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-size: 16px;
+    text-align: center;
+    font-family: Rubik, sans-serif;
+  }
+`
 
 export default ThisGuy
