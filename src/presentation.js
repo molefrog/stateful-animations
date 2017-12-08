@@ -67,8 +67,8 @@ const DirtyAnimations = props => (
     <Slide name="В чем наша миссия?" background="./images/architecture.jpg">
       <SecTitle>наша ответственность</SecTitle>
       <H3 color="#333">
-        Приложения должны решать задачи людей, <br />быть стабильными и
-        <b> эстетически приятными</b>.
+        Приложения должны решать задачи людей, <br />стабильно работать и быть
+        <b> приятными в использовании</b>.
       </H3>
     </Slide>
 
@@ -277,6 +277,23 @@ const element = React.createElement(Dialog, { size: 'medium' })`}</Code>
 
     <DialogSlide name="Диалог с входом и выходом" example="exit" />
 
+    <Slide name="Transition из react-transition-group v2" centered>
+      <Code>{`import Transition
+  from 'react-transition-group/Transition'
+
+// \`state\` is 'entered', 'entering', 'exited' etc.
+<Transition in={isVisible} timeout={duration}>
+  {state =>
+    <ModalDialog animationState={state} />}
+</Transition>
+`}</Code>
+
+      <FigureCaption>
+        <code>react-transition-group@2.0</code> предоставляет декларативный
+        компонент для анимаций входа/выхода
+      </FigureCaption>
+    </Slide>
+
     <CloudPollSlide name="Паттерн Change Detection на примере" />
 
     <Slide name="Перехват ответственности" centered>
@@ -300,6 +317,18 @@ componentWillReceiveProps(nextProps) {
     </Slide>
 
     <ControlledRenderSlide name="WebGL компонент" />
+
+    <Slide name="P-контроллер для анимаций" centered>
+      <Code>{`// Limit delta to avoid divergence
+const delta = Math.min(100.0, ts - prevTs)
+const P = 0.001 * delta
+
+this.x = P * (this.target - x)`}</Code>
+
+      <FigureCaption>
+        P-контроллер удобен для плавных неограниченных по времени анимаций.
+      </FigureCaption>
+    </Slide>
 
     <BubblePollSlide name="Перехват ответственности на примере" />
     <PollsSlide

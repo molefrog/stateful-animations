@@ -29,14 +29,20 @@ class Rotator extends React.Component {
     this.prevTs = ts
     const delta = Math.min(100.0, ts - prevTs)
 
-    // P-controller parameter (depends on delta!)
-    const p = 0.001 * delta
-
     const targetX = 4 * Math.PI * (this.mouseX || 0.0)
     const targetY = 3 * Math.PI * (this.mouseY || 0.0)
 
-    this.cube.rotation.z += p * (targetX - this.cube.rotation.z)
-    this.cube.rotation.x += p * (targetY - this.cube.rotation.x)
+    if (this.props.controlled) {
+      // P-controller parameter (depends on delta!)
+      const p = 0.001 * delta
+
+      this.cube.rotation.z += p * (targetX - this.cube.rotation.z)
+      this.cube.rotation.x += p * (targetY - this.cube.rotation.x)
+    } else {
+      this.cube.rotation.z = targetX
+      this.cube.rotation.x = targetY
+    }
+
     this.props.onTick(this.cube.rotation.z, this.cube.rotation.x)
 
     this.renderer.setClearColor(this.props.background, 1)
