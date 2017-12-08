@@ -26,6 +26,7 @@ import {
 } from 'slides/transitions'
 import DialogSlide from 'slides/enter-exit'
 import FlipSlide from 'slides/flip'
+import ResourcesSlide from 'slides/resources'
 
 const DirtyAnimations = props => (
   <Presentation
@@ -367,6 +368,8 @@ store.dispatch(actuate('highlightUser', { id: 1 }))`}
     </Slide>
 
     <FlipSlide name="Анимация перехода между роутами с помощью FLIP" />
+
+    <ResourcesSlide name="Плейлист по докладов теме" />
   </Presentation>
 )
 
