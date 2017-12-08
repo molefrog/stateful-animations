@@ -1,4 +1,8 @@
 const path = require('path')
+const webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
+const isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
   entry: './src/application.js',
@@ -27,7 +31,18 @@ module.exports = {
     ]
   },
 
-  devtool: 'cheap-module-eval-source-map',
+  plugins: isProduction
+    ? [
+        new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: JSON.stringify('production')
+          }
+        }),
+        new UglifyJsPlugin()
+      ]
+    : [],
+
+  devtool: isProduction ? false : 'cheap-module-eval-source-map',
 
   devServer: {
     contentBase: path.join(__dirname, 'public')
