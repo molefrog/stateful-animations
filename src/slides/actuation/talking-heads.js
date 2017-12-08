@@ -166,7 +166,7 @@ const Container = styled.div`
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  padding-top: 160px;
+  padding-top: 90px;
 `
 
 const Heads = styled.div`

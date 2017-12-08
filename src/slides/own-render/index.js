@@ -53,7 +53,7 @@ class WebglSlide extends React.Component {
 
   render() {
     return (
-      <Slide {...this.props}>
+      <Slide {...this.props} layout={false}>
         <Layout>
           <Side>
             <Monitor {...this.state} />

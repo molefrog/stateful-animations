@@ -43,55 +43,65 @@ class HooksSlide extends Component {
     }
 
     return (
-      <Slide {...this.props} centered>
-        <div>
-          <Button
-            checked={isActive}
-            icon="💡"
-            onClick={() => this.setState({ isActive: !isActive })}
-          >
-            {isActive ? 'видно' : 'не видно'}
-          </Button>
-
-          <Button
-            icon={!slow ? '🚗' : '🐢'}
-            checked={slow}
-            onClick={() => this.setState({ slow: !slow })}
-          >
-            {!slow ? 'быстро' : 'медленно'}
-          </Button>
-
-          {hasMonitor && (
+      <Slide {...this.props}>
+        <SlideLayout>
+          <div>
             <Button
-              icon={'🔍'}
-              checked={showMonitor}
-              onClick={() => this.setState({ showMonitor: !showMonitor })}
+              checked={isActive}
+              icon="💡"
+              onClick={() => this.setState({ isActive: !isActive })}
             >
-              монитор
+              {isActive ? 'видно' : 'не видно'}
             </Button>
-          )}
-        </div>
 
-        <Showcase>
-          <DialogPreview>
-            <DialogComponent
-              active={isActive}
-              slow={slow}
-              onAnimationState={this.handleAnimationState}
-            />
-          </DialogPreview>
+            <Button
+              icon={!slow ? '🚗' : '🐢'}
+              checked={slow}
+              onClick={() => this.setState({ slow: !slow })}
+            >
+              {!slow ? 'быстро' : 'медленно'}
+            </Button>
 
-          {hasMonitor &&
-            this.state.showMonitor && (
-              <Monitor>
-                <StateMonitor state={this.state.animationState} />
-              </Monitor>
+            {hasMonitor && (
+              <Button
+                icon={'🔍'}
+                checked={showMonitor}
+                onClick={() => this.setState({ showMonitor: !showMonitor })}
+              >
+                монитор
+              </Button>
             )}
-        </Showcase>
+          </div>
+
+          <Showcase>
+            <DialogPreview>
+              <DialogComponent
+                active={isActive}
+                slow={slow}
+                onAnimationState={this.handleAnimationState}
+              />
+            </DialogPreview>
+
+            {hasMonitor &&
+              this.state.showMonitor && (
+                <Monitor>
+                  <StateMonitor state={this.state.animationState} />
+                </Monitor>
+              )}
+          </Showcase>
+        </SlideLayout>
       </Slide>
     )
   }
 }
+
+const SlideLayout = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+`
 
 const DialogPreview = styled.div`
   transform: scale(1.1, 1.1);
@@ -110,6 +120,7 @@ const DialogPreview = styled.div`
 const Showcase = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 60px;
 `
 
 const Monitor = styled.div`

@@ -175,7 +175,7 @@ export class CloudPollSlide extends Component {
     const alphaTime = this.state.alphaTime
 
     return (
-      <Slide {...this.props} className="poll-slide">
+      <Slide {...this.props} layout={false} className="poll-slide">
         <PollControls>
           {poll => (
             <PollZoom width={width} height={height} zoom={0.65}>
@@ -210,7 +210,7 @@ export class BubblePollSlide extends Component {
     const height = 768
 
     return (
-      <Slide {...this.props} className="poll-slide">
+      <Slide {...this.props} layout={false} className="poll-slide">
         <PollControls>
           {poll => (
             <PollZoom width={width} height={height} zoom={0.65}>
@@ -233,7 +233,7 @@ export const PollsSlide = props => {
   const height = 768
 
   return (
-    <Slide {...props} className="poll-slide">
+    <Slide {...props} layout={false} className="poll-slide">
       <PollControls>
         {poll => (
           <div className="poll-slide__polls">

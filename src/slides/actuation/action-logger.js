@@ -81,7 +81,6 @@ class Logger extends Component {
 }
 
 const ActionLogger = styled.div`
-  padding: 0px 64px;
   align-self: stretch;
 `
 

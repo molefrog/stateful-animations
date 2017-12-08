@@ -3,11 +3,10 @@ import styled from 'styled-components'
 
 // Presentation pieces
 import { Presentation, Slide } from 'presa'
-import { Title, Caption, Code } from 'presa/blocks'
+import { Title, Caption, Code, H3, H4 } from 'presa/blocks'
 
 import FigureCaption from 'blocks/figure-caption'
 import FrameBackground from 'blocks/frame-background'
-import Layout from 'blocks/layout'
 
 // Interactive slides
 import TransistorSlide from 'slides/transistor'
@@ -42,19 +41,17 @@ const DirtyAnimations = props => (
       background="./images/gifs/abstract.gif"
       fade={0.5}
     >
-      <Layout>
-        <DeckTitle color="white">
-          Анимации ↝<br />в мире состояний
-        </DeckTitle>
+      <DeckTitle color="white">
+        Анимации ↝<br />в мире состояний
+      </DeckTitle>
 
-        <Contacts>
-          <Author>
-            Алексей Тактаров<br />HolyJS Moscow 2017
-          </Author>
+      <Contacts>
+        <Author>
+          Алексей Тактаров<br />HolyJS Moscow 2017
+        </Author>
 
-          <TwitterHandle>@mlfrg · molefrog.com</TwitterHandle>
-        </Contacts>
-      </Layout>
+        <TwitterHandle>@mlfrg · molefrog.com</TwitterHandle>
+      </Contacts>
     </Slide>
 
     <Slide
@@ -67,12 +64,13 @@ const DirtyAnimations = props => (
     />
     <Slide name="Три качества" background="./images/vitruvius-rules.png" />
     <Slide name="Применимы везде" background="./images/rams-radio.jpg" />
-    <Slide
-      name="В чем наша миссия?"
-      background="./images/turbo.jpg"
-      fade={0.2}
-      centered
-    />
+    <Slide name="В чем наша миссия?" background="./images/architecture.jpg">
+      <SecTitle>наша ответственность</SecTitle>
+      <H3 color="#333">
+        Приложения должны решать задачи людей, <br />быть стабильными и
+        <b> эстетически приятными</b>.
+      </H3>
+    </Slide>
 
     {/* Про что доклад? */}
     <Slide
@@ -80,7 +78,7 @@ const DirtyAnimations = props => (
       background="./images/talk-abstract.png"
     />
 
-    <Slide name="О докладчике" background="./images/about-author.png" />
+    <Slide name="О докладчике" background="./images/about-author.jpg" />
 
     {/* Производительные анимации в браузере */}
     <Slide
@@ -118,7 +116,7 @@ const DirtyAnimations = props => (
         в DOM.
       </FigureCaption>
     </Slide>
-    <Slide name="Приложение — это цепочка состояний">
+    <Slide name="Приложение — это цепочка состояний" layout={false}>
       <CustomImageLayout>
         <img width="860" src="./images/immutable-chain.png" />
         <FigureCaption>Приложение — цепочка состояний.</FigureCaption>
@@ -160,14 +158,14 @@ const DirtyAnimations = props => (
 
     <Slide
       name="React Motion не всегда подходит"
-      background="./images/react-motions-cons.png"
+      background="./images/react-motion-cons.jpg"
     />
 
     {/* Делаем кастомную анимацию на примере */}
     <Slide
-      fade={0.4}
+      fade={0.2}
       centered
-      background="./images/gifs/factory.gif"
+      background="./images/gifs/storm.gif"
       name="Грязные анимации"
     >
       <Title color="white">Как делать «грязные» анимации</Title>
@@ -254,7 +252,7 @@ const element = React.createElement(Dialog, { size: 'medium' })`}</Code>
 
     <Slide
       name="Тонкости хорошо раскрыты в статье"
-      background="./images/dan-article.png"
+      background="./images/dan-article.jpg"
     />
 
     <Slide name="Animated — простейший автомат" centered>
@@ -345,6 +343,12 @@ store.dispatch(actuate('highlightUser', { id: 1 }))`}
 
 export default DirtyAnimations
 
+const SecTitle = styled(H4)`
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  color: #666;
+`
+
 const CustomImageLayout = styled.div`
   width: 100%;
   height: 100%;
@@ -361,13 +365,13 @@ const CustomImageLayout = styled.div`
 
 const DeckTitle = styled(Title)`
   line-height: 0.95;
-  margin-top: 80px;
+  margin-top: 90px;
 `
 
 const Contacts = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 200px;
+  margin-top: 180px;
   color: white;
   font-weight: bold;
   font-size: 24px;

@@ -179,7 +179,7 @@ class Transistor extends Component {
     }
 
     return (
-      <Slide {...this.props} className="transistor-slide">
+      <Slide {...this.props} layout={false} className="transistor-slide">
         <div className="transistor-slide__code">
           {motionEnabled ? (
             <TransistorCodeMotion points={points} />
