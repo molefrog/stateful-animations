@@ -27,6 +27,7 @@ import {
 import DialogSlide from 'slides/enter-exit'
 import FlipSlide from 'slides/flip'
 import ResourcesSlide from 'slides/resources'
+import SummarySlide from 'slides/summary'
 
 const DirtyAnimations = props => (
   <Presentation
@@ -368,6 +369,8 @@ store.dispatch(actuate('highlightUser', { id: 1 }))`}
     </Slide>
 
     <FlipSlide name="Анимация перехода между роутами с помощью FLIP" />
+
+    <SummarySlide name="Резюме. Классификация анимаций в React по чистоте." />
 
     <ResourcesSlide name="Плейлист по докладов теме" />
   </Presentation>
