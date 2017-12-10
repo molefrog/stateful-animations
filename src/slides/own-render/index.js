@@ -95,7 +95,7 @@ class WebglSlide extends React.Component {
                     Используем простейший P-контроллер, чтобы получить плавную
                     анимациию:
                   </div>
-                  <Code>{`this.x = P * (props.rotX - this.x)`}</Code>
+                  <Code>{`this.x += P * (props.rotX - this.x)`}</Code>
                 </div>
               )}
             </Extra>

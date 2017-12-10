@@ -224,13 +224,6 @@ class Dialog extends Component {
       </FigureCaption>
     </Slide>
 
-    <Slide name="Карта состояний" centered>
-      <img src="./images/state-map.png" width="800" />
-      <FigureCaption>
-        Карта состояний компонента <code>Animated</code>
-      </FigureCaption>
-    </Slide>
-
     <Slide name="Интерфейс Animated" centered>
       <Code>{`
 <Animated>
@@ -239,6 +232,13 @@ class Dialog extends Component {
 `}</Code>
       <FigureCaption>
         Компонент-хелпер Animated с поддержкой анимаций выхода.
+      </FigureCaption>
+    </Slide>
+
+    <Slide name="Карта состояний" centered>
+      <img src="./images/state-map.png" width="800" />
+      <FigureCaption>
+        Карта состояний компонента <code>Animated</code>
       </FigureCaption>
     </Slide>
 
@@ -324,7 +324,7 @@ componentWillReceiveProps(nextProps) {
 const delta = Math.min(100.0, ts - prevTs)
 const P = 0.001 * delta
 
-this.x = P * (this.target - x)`}</Code>
+this.x += P * (this.target - x)`}</Code>
 
       <FigureCaption>
         P-контроллер удобен для плавных неограниченных по времени анимаций.
