@@ -4,9 +4,7 @@ import styled from 'styled-components'
 // Presentation pieces
 import { Presentation, Slide } from 'presa'
 import { Title, Caption, Code, H3, H4 } from 'presa/blocks'
-
 import FigureCaption from 'blocks/figure-caption'
-import FrameBackground from 'blocks/frame-background'
 
 // Interactive slides
 import TransistorSlide from 'slides/transistor'
@@ -26,7 +24,7 @@ import {
 } from 'slides/transitions'
 import DialogSlide from 'slides/enter-exit'
 import FlipSlide from 'slides/flip'
-
+import GameSlide from 'slides/boids'
 import ResourcesSlide from 'slides/etc/resources'
 import SummarySlide from 'slides/etc/summary'
 import LinksSlide from 'slides/etc/links'
@@ -35,6 +33,7 @@ const DirtyAnimations = props => (
   <Presentation
     name="Анимации в мире состояний"
     tableOfContents
+    useFullscreenAPI
     theme={{
       slide: { fontScale: 1.414 }
     }}
@@ -103,13 +102,11 @@ const DirtyAnimations = props => (
       comparedMethod="raf"
     />
 
-    <Slide
+    <GameSlide
       name={
         'requestAnimationFrame очень удобен ' +
         'для произвольных сложных анимаций'
       }
-      background={<FrameBackground src="http://theseguys.io" />}
-      clickThrough
     />
 
     {/* Как выглядят современные веб-приложения */}
