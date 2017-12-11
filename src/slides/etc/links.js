@@ -17,7 +17,10 @@ const LinksSlide = () => (
     исходники
     <LinkWrap>
       <LinkIcon>⭐️ </LinkIcon>
-      <FinalLink target="_blank" href="http://molefrog.com/stateful-animations">
+      <FinalLink
+        target="_blank"
+        href="https://github.com/molefrog/stateful-animations"
+      >
         github.com/molefrog/stateful-animations
       </FinalLink>
     </LinkWrap>

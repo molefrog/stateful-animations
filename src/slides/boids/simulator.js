@@ -97,7 +97,8 @@ class Simulator {
   redraw(delta) {
     const fps = delta ? 1000.0 / delta : 0.0
     this.fpsCounter.textContent =
-      `delta: ${delta.toFixed(6)}\n` + `fps: ${fps.toFixed(6)}`
+      `delta: ${delta.toFixed(6)} fps: ${fps.toFixed(6)}\n` +
+      `game: theseguys.io`
 
     for (var i = 0; i < this.boids.length; ++i) {
       const b = this.boids[i]

@@ -138,6 +138,8 @@ const Game = styled.div`
     font-size: 20px;
     bottom: 20px;
     left: 30px;
+
+    white-space: pre;
   }
 
   .boids__cross {
