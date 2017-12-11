@@ -69,6 +69,10 @@ class MotionGhost extends Component {
     })
   }
 
+  componentWillUnmount() {
+    clearTimeout(this._lastTick)
+  }
+
   componentDidMount() {
     if (!this.state.ghosts.length) {
       this.switchCorners()
@@ -76,10 +80,13 @@ class MotionGhost extends Component {
   }
 
   handleMouseMove(event) {
-    const { left } = event.currentTarget.getBoundingClientRect()
-    const x = event.pageX - left - 0.5 * (options.width - options.timelineWidth)
+    const { left, width } = event.currentTarget.getBoundingClientRect()
 
-    const tx = x / options.timelineWidth
+    const x = (event.pageX - left) / width
+
+    const padRatio =
+      0.5 * (options.width - options.timelineWidth) / options.width
+    const tx = Math.max(0, x - padRatio) / (1.0 - 2 * padRatio)
 
     const sorted = [...this.state.ghosts, 1.0, 0.0].sort(
       (a, b) => Math.abs(a - tx) - Math.abs(b - tx)
@@ -127,7 +134,7 @@ class MotionGhost extends Component {
                 const t = value.x
 
                 // This will fill up `ghosts` array during the animation
-                nextTick(() => {
+                this._lastTick = nextTick(() => {
                   const { ghosts, alpha } = this.state
                   const step = 1.0 / controlPoints
 
