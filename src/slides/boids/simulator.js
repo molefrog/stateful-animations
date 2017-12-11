@@ -12,7 +12,7 @@ const theta = -0.03
 const alphaRadius = 100.0
 const betaRadius = 100.0
 const gammaRadius = 30.0
-const attraction = 0.0
+const attraction = 0.001
 const explosionBounce = 3000.0
 
 const boidSymbols = ['✕', '△', '◯', '▧']
@@ -32,6 +32,14 @@ class Simulator {
     this._root = _root
     this.width = 0
     this.height = 0
+
+    this.targetX = 0.0
+    this.targetY = 0.0
+
+    this.alphaLaw = true
+    this.betaLaw = true
+    this.gammaLaw = true
+    this.attractLaw = false
 
     this.boids = Array(N)
       .fill(0)
@@ -85,23 +93,6 @@ class Simulator {
     this.isStopped = true
     requestAnimationFrame.cancel(this._lastRaf)
   }
-
-  // handlePop(event) {
-  //   const detector = new NeighbourDetector(this.boids)
-  //   const killed = detector.detect(event.clientX, event.clientY, 35)
-
-  //   if (!killed.length) return
-
-  //   killed.forEach(boid => {
-  //     boid.active = false
-  //     const $el = this.boidElements[boid.idx]
-
-  //     $el.addClass('is-killed')
-  //   })
-
-  //   this.explode = [event.clientX, event.clientY]
-  //   slapSound.play()
-  // }
 
   redraw(delta) {
     const fps = delta ? 1000.0 / delta : 0.0
@@ -186,20 +177,33 @@ class Simulator {
       cvx = n2 ? cvx / n2 : 0.0
       cvy = n2 ? cvy / n2 : 0.0
 
-      let vx1 = (cx - b.x) * alpha
-      let vy1 = (cy - b.y) * alpha
+      const _alpha = this.alphaLaw ? alpha : 0.0
+      const _beta = this.betaLaw ? beta : 0.0
+      const _gamma = this.gammaLaw ? gamma : 0.0
 
-      let vx2 = (cvx - b.vx) * beta
-      let vy2 = (cvy - b.vy) * beta
+      let vx1 = (cx - b.x) * _alpha
+      let vy1 = (cy - b.y) * _alpha
 
-      let vx3 = collisionx * gamma
-      let vy3 = collisiony * gamma
+      let vx2 = (cvx - b.vx) * _beta
+      let vy2 = (cvy - b.vy) * _beta
 
-      let targetx = this.width * 0.5
-      let targety = this.height * 0.5
+      let vx3 = collisionx * _gamma
+      let vy3 = collisiony * _gamma
 
-      b.vx += vx1 + vx2 + vx3 + theta * b.vx + attraction * (targetx - b.x)
-      b.vy += vy1 + vy2 + vy3 + theta * b.vy + attraction * (targety - b.y)
+      const attrC = this.attractLaw ? attraction : 0.0
+
+      b.vx +=
+        vx1 +
+        vx2 +
+        vx3 +
+        theta * b.vx +
+        attrC * (this.width * this.targetX - b.x)
+      b.vy +=
+        vy1 +
+        vy2 +
+        vy3 +
+        theta * b.vy +
+        attrC * (this.height * this.targetY - b.y)
 
       if (this.explode) {
         const [eX, eY] = this.explode

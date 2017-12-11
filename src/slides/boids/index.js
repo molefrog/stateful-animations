@@ -24,12 +24,43 @@ class GameSlide extends React.Component {
     }
   }
 
+  handleKeyDown = event => {
+    // A
+    if (event.keyCode === 65) {
+      this._engine.alphaLaw = !this._engine.alphaLaw
+    }
+
+    // S
+    if (event.keyCode === 83) {
+      this._engine.betaLaw = !this._engine.betaLaw
+    }
+
+    // D
+    if (event.keyCode === 68) {
+      this._engine.gammaLaw = !this._engine.gammaLaw
+    }
+
+    // F
+    if (event.keyCode === 70) {
+      this._engine.attractLaw = !this._engine.attractLaw
+    }
+  }
+
   componentDidMount() {
     this._engine = new Simulator(this._root)
+    document.body.addEventListener('keydown', this.handleKeyDown)
   }
 
   componentWillUnmount() {
     this._engine.stop()
+    document.body.removeEventListener('keydown', this.handleKeyDown)
+  }
+
+  handleMouseMove = event => {
+    const point = toRelativeMouseCoords(event)
+
+    this._engine.targetX = point.x
+    this._engine.targetY = point.y
   }
 
   startTheParty = event => {
@@ -46,7 +77,10 @@ class GameSlide extends React.Component {
       <Slide {...this.props} layout={false}>
         <Container>
           <Game innerRef={e => (this._root = e)} />
-          <Controls onClick={this.startTheParty}>
+          <Controls
+            onClick={this.startTheParty}
+            onMouseMove={this.handleMouseMove}
+          >
             <ClickAnywhere invisible={started}>
               Click anywhere on a screen
             </ClickAnywhere>
