@@ -15,10 +15,10 @@ export class RafScheduleSlide extends Component {
 const { requestAnimationFrame } = window
 
 const animate = () => {
+  requestAnimationFrame(animate)
+
   // Perform an animation step
   x += velocity
-
-  requestAnimationFrame(animate)
 }
 
 // Fire it up 🔥
@@ -54,12 +54,12 @@ export class RafDeltaSlide extends Component {
     return (
       <Slide centered {...this.props}>
         <Code>{`const animate = timestamp => {
+  requestAnimationFrame(animate)
+
   const delta = timestamp - prevTimestamp
 
   // Note, it's a function now!
   x += velocity(delta)
-
-  requestAnimationFrame(animate)
 }`}</Code>
         <FigureCaption>
           Важно считать разницу во времени между вызовами и анимировать значение{' '}

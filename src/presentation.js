@@ -109,6 +109,26 @@ const DirtyAnimations = props => (
       }
     />
 
+    <Slide name="Пример application loop" centered>
+      <Code fontSize={20}>{`const redraw = _ => {
+  points.forEach(point => {
+
+    // make sure \`will-change: transform\` is set
+    point.element.style.transform = \`
+      translate3d($\{point.x}px, $\{point.y}px, 0.0px)
+      rotate($\{point.angle}rad)\`
+  })
+}
+
+const tick = ts => {
+  _lastRaf = requestAnimationFrame(tick)
+
+  physicsStep(delta)
+  redraw(delta)
+}`}</Code>
+      <FigureCaption>Скелет игры с requestAnimationFrame.</FigureCaption>
+    </Slide>
+
     {/* Как выглядят современные веб-приложения */}
     <Slide name="Состояние отображается в DOM" centered>
       <img width="470" src="./images/immutable-map.png" />
