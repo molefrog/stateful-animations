@@ -23,7 +23,7 @@
     "howler": "^2.0.2",
     "lodash": "^4.17.2",
     "polished": "^1.9.0",
-    "presa": "^1.0.1",
+    "presa": "1.0.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-motion": "^0.5.2",

@@ -4785,9 +4785,9 @@ prepend-http@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
 
-presa@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/presa/-/presa-1.0.1.tgz#a39e72db53a02f70c43cfadf741dd79d4c00cbab"
+presa@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/presa/-/presa-1.0.3.tgz#0440b1a486986898bc90097896db5968cea6af63"
 
 preserve@^0.2.0:
   version "0.2.0"
