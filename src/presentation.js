@@ -28,6 +28,10 @@ import GameSlide from 'slides/boids'
 import ResourcesSlide from 'slides/etc/resources'
 import SummarySlide from 'slides/etc/summary'
 import LinksSlide from 'slides/etc/links'
+import {
+  AnimationsExpectationsSlide,
+  AnimationsRealitySlide
+} from 'slides/etc/animation-expectations'
 
 import { GoldenRuleSlide, ReverseRuleSlide } from 'slides/etc/golden-rule'
 
@@ -40,7 +44,6 @@ const DirtyAnimations = props => (
       slide: { fontScale: 1.414 }
     }}
   >
-    {/* Введение */}
     <Slide
       name="Animations in a stateful world"
       background="./images/gifs/abstract.gif"
@@ -57,6 +60,17 @@ const DirtyAnimations = props => (
 
         <TwitterHandle>@mlfrg · molefrog.com</TwitterHandle>
       </Contacts>
+    </Slide>
+
+    <Slide name="Who am I?" background="./images/about-author.jpg">
+      <H3>Alexey Taktarov</H3>
+      <H4>
+        Co-founder and team lead at <b>resume.io</b>
+      </H4>
+      <H4>
+        <i>(before)</i> product designer/dev at Shogun{' '}
+        <YCBadge>YC&apos;17</YCBadge>
+      </H4>
     </Slide>
 
     <Slide
@@ -78,18 +92,17 @@ const DirtyAnimations = props => (
     </Slide>
 
     {/* Про что доклад? */}
-    <Slide
-      name="Что рассмотрим в докладе"
-      background="./images/talk-abstract.png"
-    />
+    <Slide name="Today's agenda" centered>
+      <H4>talk&apos;s topic</H4>
+      <H3>Animation Patterns in React apps</H3>
+      <br />
 
-    <Slide name="О докладчике" background="./images/about-author.jpg" />
+      <img width="300" src="./images/sequence.jpg" />
+    </Slide>
 
-    {/* Производительные анимации в браузере */}
-    <Slide
-      name="Анимации: ожидание"
-      background="./images/ideal-animation.png"
-    />
+    <AnimationsExpectationsSlide name="Animations: expectations" />
+
+    <AnimationsRealitySlide name="Animations: reality" />
     <Slide name="requestAnimationFrame" background="./images/time-based.png" />
 
     <RafScheduleSlide name="How to use rAF" />
@@ -145,7 +158,7 @@ const tick = ts => {
       </CustomImageLayout>
     </Slide>
 
-    <Slide centered>
+    <Slide name="What about animations?" centered>
       <ImmutableLogo width="160" src="./images/immutable-logo.png" />
       <H3>
         Immutable UIs are predictable, maintainable<br /> and better to test.
@@ -466,6 +479,15 @@ const CustomImageLayout = styled.div`
   > img {
     align-self: stretch;
   }
+`
+
+const YCBadge = styled.span`
+  background: #f06530;
+  padding: 3px 5px;
+  color: white;
+  font-weight: 700;
+  border-radius: 3px;
+  margin: 0 2px;
 `
 
 const DeckTitle = styled(Title)`
