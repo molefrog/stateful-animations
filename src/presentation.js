@@ -144,12 +144,16 @@ const tick = ts => {
         </FigureCaption>
       </CustomImageLayout>
     </Slide>
-    <Slide
-      name="Используя подход состояний, можно путешествовать во времени"
-      background="./images/retrodux.gif"
-    />
 
-    {/* Анимации переходов состояний */}
+    <Slide centered>
+      <ImmutableLogo width="160" src="./images/immutable-logo.png" />
+      <H3>
+        Immutable UIs are predictable, maintainable<br /> and better to test.
+      </H3>
+
+      <Question>But what about animations?</Question>
+    </Slide>
+
     <Slide
       name="CSS transitions is what you need in 99% cases"
       background="./images/gifs/bean.gif"
@@ -157,7 +161,7 @@ const tick = ts => {
       centered
     >
       <Title color="white">CSS transitions</Title>
-      <Caption color="white">work out of the box in React</Caption>
+      <Caption color="white">are supported out of the box in React</Caption>
     </Slide>
 
     <CssTransitionCodeSlide name="How to use CSS transitions in React." />
@@ -343,6 +347,16 @@ componentWillReceiveProps(nextProps) {
       </FigureCaption>
     </Slide>
 
+    <Slide name="Changes in React 16.3" centered>
+      breaking changes in React 16.3:
+      <OutlineCode strikethrough>componentWillReceiveProps()</OutlineCode>
+      <OutlineCode>static getDerivedStateFromProps()</OutlineCode>
+      <p>
+        but it can only be used to devide state from props,<br />
+        so use <code>componentDidUpdate</code> instead.
+      </p>
+    </Slide>
+
     <ControlledRenderSlide name="WebGL component demo" />
 
     <Slide name="Using P-controller in animations" centered>
@@ -398,6 +412,17 @@ store.dispatch(actuate('highlightUser', { id: 1 }))`}
 
 export default DirtyAnimations
 
+const ImmutableLogo = styled.img`
+  margin-bottom: 24px;
+`
+
+const Question = styled.div`
+  margin-top: 20px;
+  font-size: 25px;
+  background-color: #fbf177;
+  padding: 2px 3px;
+`
+
 const ConsList = styled.ul`
   font-size: 26px;
   text-align: left;
@@ -414,6 +439,13 @@ const ConsList = styled.ul`
       padding-right: 15px;
     }
   }
+`
+
+const OutlineCode = styled.code`
+  font-size: 26px;
+  margin: 15px;
+
+  ${props => props.strikethrough && 'text-decoration: line-through;'};
 `
 
 const SecTitle = styled(H4)`
