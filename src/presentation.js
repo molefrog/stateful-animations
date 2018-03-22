@@ -84,7 +84,6 @@ const DirtyAnimations = props => (
     <AnimationsExpectationsSlide name="Animations: expectations" />
 
     <AnimationsRealitySlide name="Animations: reality" />
-    <Slide name="requestAnimationFrame" background="./images/time-based.png" />
 
     <RafScheduleSlide name="How to use rAF" />
     <TimelineComparisonSlide
