@@ -4,7 +4,7 @@ import { Slide, BuiltWithPresa } from 'presa'
 
 const LinksSlide = () => (
   <Slide name="Ссылка на презентацию">
-    презентация
+    link to the slides
     <LinkWrap>
       <LinkIcon>👉 </LinkIcon>
       <FinalLink
@@ -14,7 +14,7 @@ const LinksSlide = () => (
         molefrog.com/stateful-animations
       </FinalLink>
     </LinkWrap>
-    исходники
+    source code
     <LinkWrap>
       <LinkIcon>⭐️ </LinkIcon>
       <FinalLink
@@ -24,7 +24,7 @@ const LinksSlide = () => (
         github.com/molefrog/stateful-animations
       </FinalLink>
     </LinkWrap>
-    библиотека для презентаций на React
+    slides made with
     <LinkWrap>
       <LinkIcon>🔥 </LinkIcon>
       <FinalLink target="_blank" href="http://github.com/molefrog/presa">

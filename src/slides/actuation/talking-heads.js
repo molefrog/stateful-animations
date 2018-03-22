@@ -143,14 +143,14 @@ class TalkingHeads extends Component {
 
           <Controls>
             <Button onClick={this.saySomething.bind(this)} icon={'📣'}>
-              Говорить
+              Talk
             </Button>
 
             <Button
               onClick={() => this.setState({ isMany: !this.state.isMany })}
               icon={this.state.isMany ? '👯‍' : '🙎‍♂️'}
             >
-              {this.state.isMany ? 'Много' : 'Один'}
+              {this.state.isMany ? 'Many' : 'One'}
             </Button>
           </Controls>
 

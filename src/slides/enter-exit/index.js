@@ -51,7 +51,7 @@ class HooksSlide extends Component {
               icon="💡"
               onClick={() => this.setState({ isActive: !isActive })}
             >
-              {isActive ? 'видно' : 'не видно'}
+              {isActive ? 'open' : 'closed'}
             </Button>
 
             <Button
@@ -59,7 +59,7 @@ class HooksSlide extends Component {
               checked={slow}
               onClick={() => this.setState({ slow: !slow })}
             >
-              {!slow ? 'быстро' : 'медленно'}
+              {!slow ? 'regular speed' : 'slow'}
             </Button>
 
             {hasMonitor && (
@@ -68,7 +68,7 @@ class HooksSlide extends Component {
                 checked={showMonitor}
                 onClick={() => this.setState({ showMonitor: !showMonitor })}
               >
-                монитор
+                inspector
               </Button>
             )}
           </div>

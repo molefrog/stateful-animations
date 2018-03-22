@@ -71,7 +71,9 @@ class WebglSlide extends React.Component {
                   this.setState({ isControlled: !this.state.isControlled })
                 }
               >
-                контроллер
+                {this.state.isControlled
+                  ? 'P-controller enabled'
+                  : 'P-controller disabled'}
               </Button>
             </Buttons>
 
@@ -81,20 +83,14 @@ class WebglSlide extends React.Component {
             <Extra>
               {!this.state.isControlled && (
                 <div>
-                  <div>
-                    Обновляем внутреннее состояние, когда приходят новые props:
-                  </div>
+                  <div>Update internal state immediately on props change:</div>
                   <Code>{`this.x = props.rotX`}</Code>
                 </div>
               )}
 
               {this.state.isControlled && (
                 <div>
-                  <div>
-                    {' '}
-                    Используем простейший P-контроллер, чтобы получить плавную
-                    анимациию:
-                  </div>
+                  <div> Using P-controller filter to animate smoothly:</div>
                   <Code>{`this.x += P * (props.rotX - this.x)`}</Code>
                 </div>
               )}

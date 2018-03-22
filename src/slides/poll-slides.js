@@ -127,16 +127,16 @@ class PollControls extends Component {
 
         <div className="poll-slide__controls">
           <Button icon="👏" onClick={() => this.changeVotes(0.2)}>
-            поменять 20%
+            change 20%
           </Button>
           <Button icon="👏" onClick={() => this.changeVotes(0.8)}>
-            поменять 80%
+            change 80%
           </Button>
           <Button icon="⭐️" onClick={() => this.addVotes(1)}>
-            +1 голос
+            +1 vote
           </Button>
           <Button icon="⭐" onClick={() => this.addVotes(10)}>
-            +10 голосов
+            +10 votes
           </Button>
         </div>
       </div>
@@ -196,7 +196,7 @@ export class CloudPollSlide extends Component {
             checked={alphaTime === 4.0}
             onClick={() => this.toggleSpeed()}
           >
-            {alphaTime === 1.4 ? 'нормально' : 'медленно'}
+            {alphaTime === 1.4 ? 'normal speed' : 'slow'}
           </Button>
         </div>
       </Slide>

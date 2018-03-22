@@ -86,7 +86,7 @@ class FlipSlide extends React.Component {
             checked={this.state.debug}
             onClick={() => this.setState({ debug: !this.state.debug })}
           >
-            {'инспектор'}
+            {'inspect'}
           </Button>
         </Controls>
 

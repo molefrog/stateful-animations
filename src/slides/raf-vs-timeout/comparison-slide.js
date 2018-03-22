@@ -95,10 +95,8 @@ class ComparisonSlide extends Component {
             />
 
             <AnimationDetails>
-              <AnimationHeader>Идеальная анимация</AnimationHeader>
-              <AnimationText>
-                Плавная, работает через равные промежутки времени
-              </AnimationText>
+              <AnimationHeader>Ideal Animation</AnimationHeader>
+              <AnimationText>The time between frames is constant</AnimationText>
             </AnimationDetails>
           </AnimationMethod>
 
@@ -111,10 +109,10 @@ class ComparisonSlide extends Component {
               />
 
               <AnimationDetails>
-                <AnimationHeader>rAF + дельта</AnimationHeader>
+                <AnimationHeader>rAF + delta</AnimationHeader>
                 <AnimationText>
-                  Учитываем разницу во времени. <b>Пропускаем кадры</b>, но
-                  успеваем!
+                  The animation adapts to delta. <b>Could drop frames</b>, but
+                  completes in time!
                 </AnimationText>
               </AnimationDetails>
             </AnimationMethod>
@@ -128,9 +126,9 @@ class ComparisonSlide extends Component {
               />
 
               <AnimationDetails>
-                <AnimationHeader>Наивный метод</AnimationHeader>
+                <AnimationHeader>Naive Implementation</AnimationHeader>
                 <AnimationText>
-                  Забыли, что шаг переменный = анимация «тормозит»
+                  The step is variable. Animation isn't feasible.
                 </AnimationText>
               </AnimationDetails>
             </AnimationMethod>

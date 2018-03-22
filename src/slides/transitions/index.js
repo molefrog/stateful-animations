@@ -15,8 +15,8 @@ export class ReactMotionCodeSlide extends Component {
     <div style={{ opacity: interpolated.x }} />}
 </Motion>`}</Code>
         <FigureCaption>
-          В React-Motion используется паттерн<br />
-          <code>function-as-a-prop</code>.
+          React Motion uses<br />
+          <code>function-as-a-prop</code> pattern.
         </FigureCaption>
       </Slide>
     )
@@ -37,8 +37,8 @@ export class CssTransitionCodeSlide extends Component {
 // Direct style manipulation
 <div style={{ transform: \`translateX(\${scale})\` }} />`}</Code>
         <FigureCaption>
-          CSS анимации в React работают из коробки.<br />
-          Свойство <code>transition</code> + смена состояния → анимация.
+          CSS transitions work out of box in React.<br />
+          <code>transition</code> property + state change → animation.
         </FigureCaption>
       </Slide>
     )

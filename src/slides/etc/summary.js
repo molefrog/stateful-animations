@@ -9,9 +9,9 @@ class SummarySlide extends React.Component {
         <Line>
           <Icon width="64" height="64" src="./images/stateful-circle.png" />
           <div>
-            <MethodName>Чистые анимации</MethodName>
+            <MethodName>Pure animations</MethodName>
             <MethodDesc>
-              Только состояния!{' '}
+              Only state changes allowed!{' '}
               <code>
                 CSS transitions, react-motion,<br />react-transition-group,
                 React Move, ...
@@ -23,9 +23,9 @@ class SummarySlide extends React.Component {
         <Line>
           <Icon width="64" height="64" src="./images/dirty-circle.png" />
           <div>
-            <MethodName>Грязные анимации</MethodName>
+            <MethodName>Dirty animations</MethodName>
             <MethodDesc>
-              Работают через хуки и могут использовать DOM напрямую.<br />
+              They use lifecycle hooks and might manipulate DOM directly<br />
               <code>Web Animations, Velocity, GSAP, D3, anime.js, ...</code>
             </MethodDesc>
           </div>
@@ -34,9 +34,10 @@ class SummarySlide extends React.Component {
         <Line>
           <Icon width="64" height="64" src="./images/stateless-circle.png" />
           <div>
-            <MethodName>Перехват рендера</MethodName>
+            <MethodName>Own render</MethodName>
             <MethodDesc>
-              Для работы с внешними библиотеками, WebGL, Canvas.
+              Use this when you need to work with external APIs like WebGL,
+              Canvas.
             </MethodDesc>
           </div>
         </Line>
@@ -44,8 +45,8 @@ class SummarySlide extends React.Component {
         <Line extra>
           <Icon width="64" height="64" src="./images/stateless-square.png" />
           <div>
-            <MethodName>Сложные случаи</MethodName>
-            <MethodDesc>Коммуникация между компонентами, FLIP.</MethodDesc>
+            <MethodName>Complex cases</MethodName>
+            <MethodDesc>Inter-component communication, FLIP method.</MethodDesc>
           </div>
         </Line>
       </Slide>

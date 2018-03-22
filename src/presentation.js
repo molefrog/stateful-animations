@@ -29,9 +29,11 @@ import ResourcesSlide from 'slides/etc/resources'
 import SummarySlide from 'slides/etc/summary'
 import LinksSlide from 'slides/etc/links'
 
+import { GoldenRuleSlide, ReverseRuleSlide } from 'slides/etc/golden-rule'
+
 const DirtyAnimations = props => (
   <Presentation
-    name="Анимации в мире состояний"
+    name="Animations in a stateful world"
     tableOfContents
     useFullscreenAPI
     theme={{
@@ -40,17 +42,17 @@ const DirtyAnimations = props => (
   >
     {/* Введение */}
     <Slide
-      name="Титульный слайд"
+      name="Animations in a stateful world"
       background="./images/gifs/abstract.gif"
       fade={0.5}
     >
       <DeckTitle color="white">
-        Анимации ↝<br />в мире состояний
+        Animations ↝<br />in a stateful world
       </DeckTitle>
 
       <Contacts>
         <Author>
-          Алексей Тактаров<br />HolyJS Moscow 2017
+          Alexey Taktarov<br />React Kyiv March
         </Author>
 
         <TwitterHandle>@mlfrg · molefrog.com</TwitterHandle>
@@ -90,26 +92,21 @@ const DirtyAnimations = props => (
     />
     <Slide name="requestAnimationFrame" background="./images/time-based.png" />
 
-    <RafScheduleSlide name="rAF как выглядит" />
+    <RafScheduleSlide name="How to use rAF" />
     <TimelineComparisonSlide
-      name="Но наивная реализация некорректна"
+      name="Naive method is incorrect"
       comparedMethod="naive"
     />
-    <RafTimestampSlide name="rAF принимает параметр-время" />
-    <RafDeltaSlide name="Учитываем дельту в анимации" />
+    <RafTimestampSlide name="rAF callback takes timestamp parameter" />
+    <RafDeltaSlide name="Delta + rAF" />
     <TimelineComparisonSlide
-      name="Пропуск кадров, но анимация корректна"
+      name="Frame dropping, but feasible"
       comparedMethod="raf"
     />
 
-    <GameSlide
-      name={
-        'requestAnimationFrame очень удобен ' +
-        'для произвольных сложных анимаций'
-      }
-    />
+    <GameSlide name={'requestAnimationFrame demo'} />
 
-    <Slide name="Пример application loop" centered>
+    <Slide name="requestAnimationFrame game loop" centered>
       <Code fontSize={20}>{`const redraw = _ => {
   points.forEach(point => {
 
@@ -126,21 +123,25 @@ const tick = ts => {
   physicsStep(delta)
   redraw(delta)
 }`}</Code>
-      <FigureCaption>Скелет игры с requestAnimationFrame.</FigureCaption>
+      <FigureCaption>
+        The <code>requestAnimationFrame</code>-based game skeleton.
+      </FigureCaption>
     </Slide>
 
     {/* Как выглядят современные веб-приложения */}
-    <Slide name="Состояние отображается в DOM" centered>
+    <Slide name="State maps to DOM" centered>
       <img width="470" src="./images/immutable-map.png" />
       <FigureCaption>
-        Immutable UI в основе современных веб-приложений. Состояние отображается
-        в DOM.
+        <b>Immutable UI</b> is the foundation of modern apps.<br />
+        Application state maps to DOM.
       </FigureCaption>
     </Slide>
-    <Slide name="Приложение — это цепочка состояний" layout={false}>
+    <Slide name="Application as a chain of immutable states" layout={false}>
       <CustomImageLayout>
         <img width="860" src="./images/immutable-chain.png" />
-        <FigureCaption>Приложение — цепочка состояний.</FigureCaption>
+        <FigureCaption>
+          Application as a chain of immutable states.
+        </FigureCaption>
       </CustomImageLayout>
     </Slide>
     <Slide
@@ -150,50 +151,43 @@ const tick = ts => {
 
     {/* Анимации переходов состояний */}
     <Slide
-      name="CSS transitions работают в 99% случаев"
+      name="CSS transitions is what you need in 99% cases"
       background="./images/gifs/bean.gif"
       fade={0.2}
       centered
     >
       <Title color="white">CSS transitions</Title>
-      <Caption color="white">Подойдут для большинства задач</Caption>
+      <Caption color="white">work out of the box in React</Caption>
     </Slide>
 
-    <CssTransitionCodeSlide name="Как работать с CSS transitions в React" />
+    <CssTransitionCodeSlide name="How to use CSS transitions in React." />
 
-    <TransistorSlide name="CSS transitions в React — демо" />
+    <TransistorSlide name="Demo: CSS transitions in React." />
 
     <TransistorSlide
-      name={
-        'React Motion использует requestAnimationFrame. ' +
-        'Позволяет задавать пружинные анимации декларативно.'
-      }
+      name={'React Motion uses requestAnimationFrame.'}
       motionEnabled
     />
     <ReactMotionCodeSlide name="Function-as-a-Prop" />
 
-    <MotionGhostSlide
-      name="Как React Motion работает с состояниями."
-      centered
-    />
+    <MotionGhostSlide name="How React Motion works" centered />
 
     <Slide
-      name="React Motion не всегда подходит"
+      name="React Motion cons"
       background="./images/react-motion-cons.jpg"
     />
 
-    {/* Делаем кастомную анимацию на примере */}
     <Slide
       fade={0.2}
       centered
       background="./images/gifs/storm.gif"
-      name="Грязные анимации"
+      name="Dirty animations"
     >
-      <Title color="white">Как делать «грязные» анимации</Title>
-      <Caption color="white">На примере диалогового окна</Caption>
+      <Title color="white">Dirty animations</Title>
+      <Caption color="white">A dialog window example</Caption>
     </Slide>
 
-    <Slide name="Анимации на входе" centered>
+    <Slide name="Enter animations" centered>
       <Code>{`
 class Dialog extends Component {
   componentDidMount() {
@@ -207,12 +201,12 @@ class Dialog extends Component {
   render() { ... }
 }`}</Code>
       <FigureCaption>
-        Паттерн <b>«анимация на входе»</b> работает через хук{' '}
-        <code>componentDidMount</code> и прямой доступ к элементу.
+        The <b>«animation on enter»</b> pattern. Works through{' '}
+        <code>componentDidMount</code> lifecycle hook.
       </FigureCaption>
     </Slide>
 
-    <Slide name="Отмена анимации" centered>
+    <Slide name="Cancelling the animation" centered>
       <Code>{`class Dialog extends Component {
   componentDidMount() {
     const node = findDOMNode(this)
@@ -227,56 +221,60 @@ class Dialog extends Component {
   }
 }`}</Code>
       <FigureCaption>
-        Компонент может быть извлечен до того, как анимация закончится.
+        Make sure you stop the animation on unmount.
       </FigureCaption>
     </Slide>
 
-    <DialogSlide name="Диалоговое окно: вход" example="enter" />
+    <DialogSlide name="Dialog window: enter animation" example="enter" />
 
-    <Slide name="Проблемы с выходом" centered>
+    <Slide name="Animating exit is tough" centered>
       <Code>{`
 <div>
   {this.state.showDialog && <Dialog />}
 </div>
 `}</Code>
       <FigureCaption>
-        Проблемы с анимацией выхода — компонент уже извлечен из DOM.
+        Animating exit is hard — there is nothing to animate since the component
+        is not in the DOM anymore.
       </FigureCaption>
     </Slide>
 
-    <Slide name="Интерфейс Animated" centered>
+    <Slide name="Animated component" centered>
       <Code>{`
 <Animated>
   {this.state.showDialog && <Dialog />}
 </Animated>
 `}</Code>
       <FigureCaption>
-        Компонент-хелпер Animated с поддержкой анимаций выхода.
+        Introducing <code>Animated</code> — a helper component that supports
+        exit animation
       </FigureCaption>
     </Slide>
 
-    <Slide name="Карта состояний" centered>
+    <Slide name=" The state map of the Animated component" centered>
       <img src="./images/state-map.png" width="800" />
       <FigureCaption>
-        Карта состояний компонента <code>Animated</code>
+        The state map of the <code>Animated</code> component
       </FigureCaption>
     </Slide>
 
-    <Slide name="Во что превращается JSX" centered>
+    <Slide name="How is JSX working internally?" centered>
       <Code fontSize={22}>{`const element = <Dialog size="medium" />
 
 // => { type: Dialog, props: { size: 'medium' }, ... }
 const element = React.createElement(Dialog, { size: 'medium' })`}</Code>
 
-      <FigureCaption>Что скрывается за JSX?</FigureCaption>
+      <FigureCaption>
+        JSX is nothing but a light-weight serializable object.
+      </FigureCaption>
     </Slide>
 
     <Slide
-      name="Тонкости хорошо раскрыты в статье"
+      name="Check Dan's article for more info"
       background="./images/dan-article.jpg"
     />
 
-    <Slide name="Animated — простейший автомат" centered>
+    <Slide name="Animated is a FSM" centered>
       <Code>{`
   componentWillReceiveProps(nextProps) {
     // Exit transition
@@ -292,13 +290,17 @@ const element = React.createElement(Dialog, { size: 'medium' })`}</Code>
   }
 `}</Code>
       <FigureCaption>
-        Компонент-хелпер Animated с поддержкой анимаций выхода.
+        <code>Animated</code> component implementation: <br />
+        <b>Finite State Machine.</b>
       </FigureCaption>
     </Slide>
 
-    <DialogSlide name="Диалог с входом и выходом" example="exit" />
+    <DialogSlide
+      name="Demo: modal dialog with enter/exit animations"
+      example="exit"
+    />
 
-    <Slide name="Transition из react-transition-group v2" centered>
+    <Slide name="Transition component from react-transition-group v2" centered>
       <Code>{`import Transition
   from 'react-transition-group/Transition'
 
@@ -310,14 +312,14 @@ const element = React.createElement(Dialog, { size: 'medium' })`}</Code>
 `}</Code>
 
       <FigureCaption>
-        <code>react-transition-group@2.0</code> предоставляет декларативный
-        компонент для анимаций входа/выхода
+        <code>react-transition-group@2.0</code> provides <br />a declarative way
+        for enter/exit animations
       </FigureCaption>
     </Slide>
 
-    <CloudPollSlide name="Паттерн Change Detection на примере" />
+    <CloudPollSlide name="Using «Change Detection» pattern" />
 
-    <Slide name="Перехват ответственности" centered>
+    <Slide name="«Own render» pattern" centered>
       <Code fontSize={20}>{`render() {
   return <canvas />
 }
@@ -331,15 +333,15 @@ componentWillReceiveProps(nextProps) {
   }
 }`}</Code>
       <FigureCaption>
-        С помощью хуков можно полностью <b>перехватить ответственность</b> за
-        рендер. Например, для работы с <code>Canvas</code>, <code>WebGL</code>,{' '}
-        <code>WebAudio</code> и т.д.
+        Using lifecycle hooks you can completely{' '}
+        <b>override component&apos;s render</b>. For exaple when using{' '}
+        <code>Canvas</code>, <code>WebGL</code>, <code>WebAudio</code> etc.
       </FigureCaption>
     </Slide>
 
-    <ControlledRenderSlide name="WebGL компонент" />
+    <ControlledRenderSlide name="WebGL component demo" />
 
-    <Slide name="P-контроллер для анимаций" centered>
+    <Slide name="Using P-controller in animations" centered>
       <Code>{`// Limit delta to avoid divergence
 const delta = Math.min(100.0, ts - prevTs)
 const P = 0.001 * delta
@@ -347,26 +349,19 @@ const P = 0.001 * delta
 this.x += P * (this.target - x)`}</Code>
 
       <FigureCaption>
-        P-контроллер удобен для плавных неограниченных по времени анимаций.
+        This little trick called <b>P-controller</b> (taken from control theory)
+        is handy for time-unbound animations
       </FigureCaption>
     </Slide>
 
-    <BubblePollSlide name="Перехват ответственности на примере" />
-    <PollsSlide
-      name={'Правильно построенные «грязные компоненты» удобно тестировать'}
-    />
+    <BubblePollSlide name="Own render demo: canvas poll" />
+    <PollsSlide name={'You can test dirty components visually'} />
 
-    {/* Золотое правило и о запуске презентаций */}
-    <Slide
-      name="Золотое правило для грязных анимаций"
-      background="./images/golden-rule.png"
-    />
-    <Slide
-      name="Правило работает и в другую сторону"
-      background="./images/state-changes.png"
-    />
+    <GoldenRuleSlide name="The rule of thumb when making dirty animations" />
 
-    <Slide centered name="Применяем паттерн в Redux приложениях">
+    <ReverseRuleSlide name="The rule works other way around" />
+
+    <Slide centered name="How to use Actuator in Redux apps">
       <Code>
         {`import { Actuator, actuate } from 'redux-actuator'
 
@@ -378,22 +373,22 @@ store.dispatch(actuate('animateBadge'))
 store.dispatch(actuate('highlightUser', { id: 1 }))`}
       </Code>
       <FigureCaption>
-        Паттерн удобно использовать в Redux приложениях, где глобальный стейт —
-        единственный способ коммуникации.
+        Actuator is used in Redux apps where global state is the only way to
+        communicate.
       </FigureCaption>
     </Slide>
 
-    <Slide name="Redux Actuator демо">
+    <Slide name="Redux Actuator demo">
       <TalkingHeads />
     </Slide>
 
-    <FlipSlide name="Анимация перехода между роутами с помощью FLIP" />
+    <FlipSlide name="Route change animation decoupled (FLIP method)" />
 
-    <SummarySlide name="Резюме. Классификация анимаций в React по чистоте." />
+    <SummarySlide name="Animation methods in React classified by purity" />
 
-    <ResourcesSlide name="Плейлист по докладов теме" />
+    <ResourcesSlide name="Related talks and videos" />
 
-    <LinksSlide name="Ссылка на презентацию" />
+    <LinksSlide name="Resources" />
   </Presentation>
 )
 

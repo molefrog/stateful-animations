@@ -23,10 +23,6 @@ const animate = () => {
 
 // Fire it up 🔥
 requestAnimationFrame(animate)`}</Code>
-        <FigureCaption>
-          requestAnimationFrame — незаменимый инструмент для анимаций в
-          браузере.
-        </FigureCaption>
       </Slide>
     )
   }
@@ -41,8 +37,8 @@ export class RafTimestampSlide extends Component {
   // timestamp ~> 30485.84100000153
 })`}</Code>
         <FigureCaption>
-          rAF передает в коллбек временную метку с точностью в <i>5 µs</i>{' '}
-          (микросекунд).
+          rAF passes a high-precision timestamp up to <i>5 µs</i>{' '}
+          (microseconds).
         </FigureCaption>
       </Slide>
     )
@@ -62,8 +58,8 @@ export class RafDeltaSlide extends Component {
   x += velocity(delta)
 }`}</Code>
         <FigureCaption>
-          Важно считать разницу во времени между вызовами и анимировать значение{' '}
-          <b>пропорционально</b> дельте!
+          It is important to calculate delta between calls and use it in order
+          to adapt the animation.
         </FigureCaption>
       </Slide>
     )

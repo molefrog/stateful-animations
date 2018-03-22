@@ -252,7 +252,7 @@ class MotionGhost extends Component {
 
         <div className="transistor-slide__controls">
           <Button icon={alpha ? '👈' : '👉'} onClick={this.switchCorners}>
-            {alpha ? 'Cюда' : 'Туда'}
+            {alpha ? 'This way' : 'That way'}
           </Button>
 
           <Button
@@ -260,7 +260,7 @@ class MotionGhost extends Component {
             checked={isWobble}
             onClick={() => this.setState({ isWobble: !isWobble })}
           >
-            {'Режим желе'}
+            {'Wobble'}
           </Button>
         </div>
       </Slide>

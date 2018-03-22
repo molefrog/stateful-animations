@@ -173,9 +173,9 @@ class Transistor extends Component {
       })
 
     const translations = {
-      line: 'Линия',
-      circle: 'Круг',
-      eight: 'Бесконечность'
+      line: 'Line',
+      circle: 'Circle',
+      eight: 'Infinity'
     }
 
     return (
@@ -202,7 +202,7 @@ class Transistor extends Component {
               icon={motionEnabled ? '🚗' : '🐢'}
               onClick={this.toggleMotion.bind(this)}
             >
-              React Motion {motionEnabled ? 'включен' : 'выключен'}
+              React Motion {motionEnabled ? 'enabled' : 'disabled'}
             </Button>
           )}
 
