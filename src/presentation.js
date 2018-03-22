@@ -73,25 +73,6 @@ const DirtyAnimations = props => (
       </H4>
     </Slide>
 
-    <Slide
-      name="Витрувий — один из первых архитекторов-теоретиков"
-      background="./images/vitruvius-pitch.jpg"
-    />
-    <Slide
-      name="Витрувий написал труд по архитектуре"
-      background="./images/vitruvius-book.jpg"
-    />
-    <Slide name="Три качества" background="./images/vitruvius-rules.png" />
-    <Slide name="Применимы везде" background="./images/rams-radio.jpg" />
-    <Slide name="В чем наша миссия?" background="./images/architecture.jpg">
-      <SecTitle>наша ответственность</SecTitle>
-      <H3 color="#333">
-        Приложения должны решать задачи людей, <br />стабильно работать и быть
-        <b> приятными в использовании</b>.
-      </H3>
-    </Slide>
-
-    {/* Про что доклад? */}
     <Slide name="Today's agenda" centered>
       <H4>talk&apos;s topic</H4>
       <H3>Animation Patterns in React apps</H3>
@@ -459,12 +440,6 @@ const OutlineCode = styled.code`
   margin: 15px;
 
   ${props => props.strikethrough && 'text-decoration: line-through;'};
-`
-
-const SecTitle = styled(H4)`
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-  color: #666;
 `
 
 const CustomImageLayout = styled.div`
