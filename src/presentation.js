@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 // Presentation pieces
 import { Presentation, Slide } from 'presa'
-import { Title, Caption, Code, H3, H4 } from 'presa/blocks'
+import { Title, Caption, Code, H2, H3, H4 } from 'presa/blocks'
 import FigureCaption from 'blocks/figure-caption'
 
 // Interactive slides
@@ -172,10 +172,14 @@ const tick = ts => {
 
     <MotionGhostSlide name="How React Motion works" centered />
 
-    <Slide
-      name="React Motion cons"
-      background="./images/react-motion-cons.jpg"
-    />
+    <Slide name="React Motion cons" centered>
+      <H3>The downsides of using React Motion</H3>
+      <ConsList>
+        <li>Spring-based animations are not time limited</li>
+        <li>Hard to work with sequences</li>
+        <li>Performance issues</li>
+      </ConsList>
+    </Slide>
 
     <Slide
       fade={0.2}
@@ -393,6 +397,24 @@ store.dispatch(actuate('highlightUser', { id: 1 }))`}
 )
 
 export default DirtyAnimations
+
+const ConsList = styled.ul`
+  font-size: 26px;
+  text-align: left;
+  padding: 0;
+  padding-top: 15px;
+  color: #333333;
+
+  li {
+    margin-bottom: 32px;
+    list-style-type: none;
+
+    &:before {
+      content: '❌';
+      padding-right: 15px;
+    }
+  }
+`
 
 const SecTitle = styled(H4)`
   margin-bottom: 10px;
