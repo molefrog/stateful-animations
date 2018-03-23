@@ -412,6 +412,66 @@ store.dispatch(actuate('highlightUser', { id: 1 }))`}
 
     <FlipSlide name="Route change animation decoupled (FLIP method)" />
 
+    <Slide name="React-Native" centered>
+      <H4>React Native</H4>
+      <H3>
+        Building high-performance animations <br />using Animated API
+      </H3>
+      <br />
+
+      <img width="300" src="./images/sequence.jpg" />
+    </Slide>
+
+    <Slide name="Step 1. Define value" centered>
+      <Code fontSize={20}>
+        {`import { Animated } from 'react-native'
+
+// inside a constructor
+const animValue = new Animated.Value(0)
+this.state = { animValue }`}
+      </Code>
+      <FigureCaption>
+        <b>Step 1.</b> Define a value.
+      </FigureCaption>
+    </Slide>
+
+    <Slide name="Step 2. Connect it to the View" centered>
+      <Code fontSize={20}>
+        {`const { animValue } = this.state
+
+<Animated.View
+  style={{
+    opacity: animValue,
+    transform: [
+      {
+        translateY: animValue.interpolate({
+          inputRange: [0, 1],
+          outputRange: [20, 0]
+        })
+      }
+    ]
+  }}>`}
+      </Code>
+      <FigureCaption>
+        <b>Step 2.</b> Connect it to the View.
+      </FigureCaption>
+    </Slide>
+
+    <Slide name="Step 3. Fire it up!" centered>
+      <Code fontSize={20}>
+        {`
+// or \`spring\`, \`decay\` etc.
+Animated.timing(animValue, {
+  toValue: 0,
+  duration: 500
+}).start()
+`}
+      </Code>
+      <FigureCaption>
+        <b>Step 3.</b> Fire it up!
+      </FigureCaption>
+    </Slide>
+
     <SummarySlide name="Animation methods in React classified by purity" />
 
     <ResourcesSlide name="Related talks and videos" />
