@@ -73,6 +73,23 @@ const DirtyAnimations = props => (
       </H4>
     </Slide>
 
+    <Slide name="About resume.io" background="./images/resume-screen-1.jpg">
+      <ResumeioLogo src="./images/resumeio-logo.png" width="120" />
+
+      <MetricNumber>~500k</MetricNumber>
+      <MetricLabel>registered users</MetricLabel>
+
+      <MetricNumber>1.5 years</MetricNumber>
+      <MetricLabel>active, since 2016</MetricLabel>
+
+      <MetricNumber>6 countries</MetricNumber>
+      <MetricLabel>US and Europe</MetricLabel>
+
+      <br />
+
+      <img src="./images/producthunt-badge.jpg" width="180" />
+    </Slide>
+
     <Slide name="Today's agenda" centered>
       <H4>talk&apos;s topic</H4>
       <H3>Animation Patterns in React apps</H3>
@@ -405,6 +422,20 @@ store.dispatch(actuate('highlightUser', { id: 1 }))`}
 
 export default DirtyAnimations
 
+const MetricNumber = styled.div`
+  font-size: 38px;
+  font-weight: 700;
+`
+
+const MetricLabel = styled.div`
+  text-transform: uppercase;
+  font-size: 17px;
+  font-weight: 600;
+  color: #a0a0a0;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+`
+
 const ImmutableLogo = styled.img`
   margin-bottom: 24px;
 `
@@ -453,6 +484,10 @@ const CustomImageLayout = styled.div`
   > img {
     align-self: stretch;
   }
+`
+
+const ResumeioLogo = styled.img`
+  margin-bottom: 38px;
 `
 
 const YCBadge = styled.span`
